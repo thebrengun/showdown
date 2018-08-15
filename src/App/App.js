@@ -24,14 +24,14 @@ class App extends Component {
     super(props)
     this.state = {
       videoSlugs: [],
-      playingSlug: null
+      currentVideoSlug: null
     }
   }
 
   fetchVideos = () => {
     this.setState(_ => ({
       videoSlugs: URLS,
-      playingSlug: _ld.sample(URLS)
+      currentVideoSlug: _ld.sample(URLS)
     }))
   }
 
@@ -42,19 +42,17 @@ class App extends Component {
   changeVideo = event => {
     event.preventDefault()
     event.persist()
-    this.setState(prevState => ({
-      playingSlug: event.target.innerText
-    }))
+    this.setState(prevState => ({ currentVideoSlug: event.target.innerText }))
   }
 
   render () {
+    const player = this.state.currentVideoSlug && <VimeoPlayer currentVideoSlug={this.state.currentVideoSlug} />
     return (
       <div>
-        {/* TODO: replace || workaround below */}
-        <VimeoPlayer videoPlaying={this.state.playingSlug || '196027549'} />
+        {player}
         <Menu
           videos={this.state.videoSlugs}
-          activeVideo={this.state.playingSlug}
+          activeVideo={this.state.currentVideoSlug}
           changeVideo={this.changeVideo}
         />
       </div>

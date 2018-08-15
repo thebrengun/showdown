@@ -24,7 +24,6 @@ export default class VimeoPlayer extends Component {
   }
 
   handleKeyPress = event => {
-    console.log(event.key)
     if (event.key.toLowerCase() === 'm') {
       this.setState(prevState => ({ volume: Number(!prevState.volume) }))
     } else if (event.key.toLowerCase() === ' ') {
@@ -34,13 +33,18 @@ export default class VimeoPlayer extends Component {
 
   fetchAspectRatio = () => {
     const VIMEO_ENDPOINT = 'https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/'
-    axios.get(`${VIMEO_ENDPOINT}${this.props.videoPlaying}`)
+    axios.get(`${VIMEO_ENDPOINT}${this.props.currentVideoSlug}`)
       .then(response => {
         this.setState(prevState => ({
           aspectRatio: response.data.width / response.data.height
         }))
       })
       .catch(anOopsy => console.error(anOopsy))
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    console.log(nextProps.currentVideoSlug)
+    return nextProps.currentVideoSlug
   }
 
   componentDidMount () {
@@ -61,7 +65,7 @@ export default class VimeoPlayer extends Component {
     return (
       <div className={'showdown-react-player-wrapper'}>
         <ReactPlayer
-          url={`https://vimeo.com/${this.props.videoPlaying}`}
+          url={`https://vimeo.com/${this.props.currentVideoSlug}`}
           width={'100vw'}
           height={'100vh'}
           volume={this.state.volume}
