@@ -29,7 +29,7 @@ export default class Menu extends Component {
 
     const style = {
       position: 'absolute',
-      top: window.innerHeight * 0.5,
+      bottom: 0,
       left: 0,
       background: 'rgba(0, 0, 0, 0.4)',
       padding: '1em'
