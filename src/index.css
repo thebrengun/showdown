@@ -4,7 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-iframe .player .vp-controls {
-  display: none !important;
-  top: 0;
+iframe {
+
 }
