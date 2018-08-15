@@ -7,15 +7,12 @@ import './VimeoPlayer.css'
 // TODO: customize loading screen -- is there a ReactPlayer fn-prop for this?
 //   Use monster art for loading screen?
 // TODO: change dimensions of player on window resize
-// TODO: add event listeners for playing/pausing, or focus player element somehow
-// TODO: handle muting and unmuting
 
 export default class VimeoPlayer extends Component {
   state = {
     aspectRatio: null,
-    volume: 0
-    // videoHeight: null,
-    // videoWidth: null
+    volume: 0,
+    playing: true
   }
 
   attachEventListeners = () => {
@@ -29,9 +26,9 @@ export default class VimeoPlayer extends Component {
   handleKeyPress = event => {
     console.log(event.key)
     if (event.key.toLowerCase() === 'm') {
-      this.setState(prevState => ({
-        volume: prevState.volume === 0 ? 1 : 0
-      }))
+      this.setState(prevState => ({ volume: Number(!prevState.volume) }))
+    } else if (event.key.toLowerCase() === ' ') {
+      this.setState(prevState => ({ playing: !prevState.playing }))
     }
   }
 
@@ -65,15 +62,12 @@ export default class VimeoPlayer extends Component {
       <div className={'showdown-react-player-wrapper'}>
         <ReactPlayer
           url={`https://vimeo.com/${this.props.videoPlaying}`}
-          // width={window.innerWidth}
-          // height={window.innerHeight}
           width={'100vw'}
           height={'100vh'}
           volume={this.state.volume}
-          playing
-          loop
           onBuffer={beep => console.log('bufferin', beep)}
-          // onProgress={beep => console.log('progressin', beep)}
+          playing={this.state.playing}
+          loop
         />
       </div>
     )
