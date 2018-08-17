@@ -1,17 +1,27 @@
 import React, { Component } from 'react'
+import './Menu.css'
+
+// TODO: Add open/close display functionality
 
 export default class Menu extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      open: false,
       activeVideo: this.props.playingSlug
     }
   }
 
+  sortVideos = () => {
+    return [...new Set([this.props.activeVideo, ...this.props.videos])].reverse()
+  }
+
   render () {
-    const menuItems = this.props.videos.map((video, index) => {
+    const sortedVideos = this.sortVideos()
+    const menuItems = sortedVideos.map((video, index) => {
       const itemStyle = {
-        color: video === this.props.activeVideo ? 'yellow' : 'green',
+        color: video === this.props.activeVideo ? 'rgb(252, 100, 217)' : 'white',
+        letterSpacing: '.1em',
         display: 'block',
         padding: '.25em 0'
       }
@@ -27,15 +37,8 @@ export default class Menu extends Component {
       )
     })
 
-    const style = {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      background: 'rgba(0, 0, 0, 0.4)',
-      padding: '1em'
-    }
     return (
-      <div style={style}>
+      <div className={'menu-container'} >
         {menuItems}
       </div>
     )

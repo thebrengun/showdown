@@ -10,6 +10,8 @@ import VimeoPlayer from '../VimeoPlayer/VimeoPlayer'
 // † https://github.com/CookPete/react-player/issues/413
 //   change permissions on vimeo, †causes ReactPlayer to not load next vid on state change
 
+// ENDPOINT: https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data
+
 const URLS = [
   '201020459',
   // '271551085', // †
@@ -46,13 +48,16 @@ class App extends Component {
   }
 
   render () {
-    const player = this.state.currentVideoSlug && <VimeoPlayer currentVideoSlug={this.state.currentVideoSlug} />
+    const { currentVideoSlug, videoSlugs } = this.state
+    console.log(this.state)
     return (
       <div>
-        {player}
+        {
+          currentVideoSlug && <VimeoPlayer currentVideoSlug={currentVideoSlug} />
+        }
         <Menu
-          videos={this.state.videoSlugs}
-          activeVideo={this.state.currentVideoSlug}
+          videos={videoSlugs}
+          activeVideo={currentVideoSlug}
           changeVideo={this.changeVideo}
         />
       </div>

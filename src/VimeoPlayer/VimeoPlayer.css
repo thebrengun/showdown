@@ -1,10 +1,67 @@
-.showdown-react-player-wrapper {
-  min-height: 100vh;
-  min-width: 100vw;
+.masky {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 
-@media (min-aspect-ratio: 1 / 1) {
-  .showdown-react-player-wrapper {
+.showdown-react-player-wrapper iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
 
+/* https://codepen.io/anon/pen/zRVLGJ */
+
+.player-container {
+  overflow: hidden;
+}
+
+.showdown-react-player-wrapper {
+  width: 100vw;
+  height: 100vw;
+  background: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -99;
+}
+
+.player-container,
+.showdown-react-player-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (min-aspect-ratio: 16 / 9) {
+  .player-container {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16 / 9) {
+  .player-container {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+@media (min-aspect-ratio: 1) {
+  .showdown-react-player-wrapper {
+    height: 100vh;
   }
 }
