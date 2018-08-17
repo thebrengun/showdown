@@ -7,61 +7,108 @@
   right: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  display: none;
+  /* align-items: bottom; */
+  justify-content: center;
 }
 
-.showdown-react-player-wrapper iframe {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+.player-controls {
+  /* display: flex; */
 }
 
 /* https://codepen.io/anon/pen/zRVLGJ */
 
-.player-container {
+.react-player {
   overflow: hidden;
+  display: none;
 }
 
-.showdown-react-player-wrapper {
+.showdown-react-player-container {
   width: 100vw;
   height: 100vw;
-  background: #000;
+  background: #F00;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: -99;
-}
-
-.player-container,
-.showdown-react-player-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
-@media (min-aspect-ratio: 16 / 9) {
-  .player-container {
-    height: 300%;
-    top: -100%;
-  }
-}
-
-@media (max-aspect-ratio: 16 / 9) {
-  .player-container {
-    width: 300%;
-    left: -100%;
-  }
-}
-
-@media (min-aspect-ratio: 1) {
-  .showdown-react-player-wrapper {
+@media (min-width: 100vh) {
+  .showdown-react-player-container {
     height: 100vh;
+    background: green;
   }
+}
+
+div.testy {
+  width: 0px;
+  height: 0px;
+  background: rebeccapurple;
+}
+
+div.fake-iframe {
+  width: 500px;
+  height: 900px;
+  transform: translate(-50%,-50%);
+  background: blue;
+}
+.showdown-react-player-container iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+/* Adapted from https://alexanderwallin.github.io/react-player-controls/ */
+
+.PlayButton, .PauseButton, .PrevButton, .NextButton, .SoundOnButton, .SoundOffButton {
+  margin-right: 10px;
+  padding: 8px;
+  background: #fefefe00;
+  border: 2px solid rgba(252, 100, 217, 0);
+  outline: none;
+  display: inline-block;
+}
+
+.PlayButton[disabled], .PauseButton[disabled], .PrevButton[disabled], .NextButton[disabled], .SoundOnButton[disabled], .SoundOffButton[disabled] {
+  opacity: 0.5;
+}
+
+.PlayButton.isEnabled, .PauseButton.isEnabled, .PrevButton.isEnabled, .NextButton.isEnabled, .SoundOnButton.isEnabled, .SoundOffButton.isEnabled {
+  cursor: pointer;
+}
+
+.PlayButton.isEnabled:hover, .PauseButton.isEnabled:hover, .PrevButton.isEnabled:hover, .NextButton.isEnabled:hover, .SoundOnButton.isEnabled:hover, .SoundOffButton.isEnabled:hover {
+  border-color: #3ea454;
+}
+
+.PlayButton.isEnabled:hover .Icon-shape, .PauseButton.isEnabled:hover .Icon-shape, .PrevButton.isEnabled:hover .Icon-shape, .NextButton.isEnabled:hover .Icon-shape, .SoundOnButton.isEnabled:hover .Icon-shape, .SoundOffButton.isEnabled:hover .Icon-shape {
+  fill: #3ea454;
+}
+
+.PlayButton.isEnabled:active, .PauseButton.isEnabled:active, .PrevButton.isEnabled:active, .NextButton.isEnabled:active, .SoundOnButton.isEnabled:active, .SoundOffButton.isEnabled:active {
+  border-color: rgba(62, 164, 84, 0.5);
+}
+
+.PlayButton.isEnabled:active .Icon-shape, .PauseButton.isEnabled:active .Icon-shape, .PrevButton.isEnabled:active .Icon-shape, .NextButton.isEnabled:active .Icon-shape, .SoundOnButton.isEnabled:active .Icon-shape, .SoundOffButton.isEnabled:active .Icon-shape {
+  fill: rgba(62, 164, 84, 0.5);
+}
+
+.Icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.Icon-shape {
+  fill: rgb(252, 100, 217);
 }
