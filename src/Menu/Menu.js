@@ -20,10 +20,7 @@ export default class Menu extends Component {
     const sortedVideos = this.sortVideos()
     const menuItems = sortedVideos.map((video, index) => {
       const itemStyle = {
-        color: video === this.props.activeVideo ? 'rgb(252, 100, 217)' : 'white',
-        letterSpacing: '.1em',
-        display: 'block',
-        padding: '.25em 0'
+        color: video === this.props.activeVideo ? 'rgb(252, 100, 217)' : 'white'
       }
       return (
         <a
