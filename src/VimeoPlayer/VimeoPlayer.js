@@ -39,6 +39,7 @@ export default class VimeoPlayer extends Component {
     if (event.key.toLowerCase() === 'm') {
       this.setState(prevState => ({ volume: Number(!prevState.volume) }))
     } else if (event.key.toLowerCase() === ' ') {
+      event.preventDefault()
       this.setState(prevState => ({ playing: !prevState.playing }))
     }
   }
@@ -74,13 +75,14 @@ export default class VimeoPlayer extends Component {
         <div className={'masky'} />
         <div className='player-container'>
           <ReactPlayer
+            className={'react-player'}
             url={`https://vimeo.com/${this.props.currentVideoSlug}`}
-            // width={'100%'}
-            // height={'100%'}
+            width={'100%'}
+            height={'100%'}
             volume={this.state.volume}
             playing={this.state.playing}
             loop
-            onBuffer={_ => console.log('life is buffering')}
+            onBuffer={_ => console.log('desire is the cause of all buffering')}
           />
         </div>
       </div>
