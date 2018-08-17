@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ld from 'lodash' // TODO: remove later
 
+import { mod } from '../utils'
 import Menu from '../Menu/Menu'
 import VimeoPlayer from '../VimeoPlayer/VimeoPlayer'
 
@@ -37,6 +38,18 @@ class App extends Component {
     }))
   }
 
+  previousVideo = () => {
+    const currentVideoIndex = this.state.videoSlugs.indexOf(this.state.currentVideoSlug)
+    const previousVideoIndex = mod(currentVideoIndex - 1, this.state.videoSlugs.length)
+    this.setState(prevState => ({ currentVideoSlug: prevState.videoSlugs[previousVideoIndex] }))
+  }
+
+  nextVideo = () => {
+    const currentVideoIndex = this.state.videoSlugs.indexOf(this.state.currentVideoSlug)
+    const nextVideoIndex = mod(currentVideoIndex + 1, this.state.videoSlugs.length)
+    this.setState(prevState => ({ currentVideoSlug: prevState.videoSlugs[nextVideoIndex] }))
+  }
+
   componentDidMount = () => {
     this.fetchVideos()
   }
@@ -49,11 +62,17 @@ class App extends Component {
 
   render () {
     const { currentVideoSlug, videoSlugs } = this.state
-    console.log(this.state)
     return (
       <div>
         {
-          currentVideoSlug && <VimeoPlayer currentVideoSlug={currentVideoSlug} />
+          currentVideoSlug &&
+          <VimeoPlayer
+            currentVideoSlug={currentVideoSlug}
+            videos={videoSlugs}
+            changeVideo={this.changeVideo}
+            previousVideo={this.previousVideo}
+            nextVideo={this.nextVideo}
+          />
         }
         <Menu
           videos={videoSlugs}
