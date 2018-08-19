@@ -85,12 +85,14 @@ export default class VimeoPlayer extends Component {
     if (containerAspectRatio > this.state.video.aspectRatio) {
       return {
         width: this.state.video.height * this.state.video.aspectRatio,
+        // instead of this.state.video.height, need to adjust this proportionally, I think
         height: window.innerHeight
       }
     } else { // they could be equal
       return {
         width: window.innerWidth,
         height: this.state.video.width / this.state.video.aspectRatio
+        // instead of this.state.video.width, need to adjust this proportionally, I think
       }
     }
   }
@@ -108,6 +110,11 @@ export default class VimeoPlayer extends Component {
     const { width, height } = this.playerDimensions()
     return (
       <div className={'showdown-react-player-container'}>
+        <div className='fake-iframe-container'>
+          <div className='fake-iframe'>
+            texty123
+          </div>
+        </div>
         <div className={'masky'}>
           <PlaybackControls
             className={'player-controls'}
@@ -122,11 +129,6 @@ export default class VimeoPlayer extends Component {
             onPrevious={this.props.previousVideo}
             onNext={this.props.nextVideo}
           />
-        </div>
-        <div className='testy'>
-          <div className='fake-iframe'>
-            texty123
-          </div>
         </div>
         <ReactPlayer
           className={'react-player'}

@@ -7,27 +7,28 @@
   right: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  display: none;
-  /* align-items: bottom; */
+  align-items: flex-end;
   justify-content: center;
+  display: flex;
+
+  /* tesing conditions */
+  display: none;
 }
 
 .player-controls {
   /* display: flex; */
 }
 
-/* https://codepen.io/anon/pen/zRVLGJ */
-
 .react-player {
   overflow: hidden;
+
+  /* tesing conditions */
   display: none;
 }
 
 .showdown-react-player-container {
   width: 100vw;
   height: 100vw;
-  background: #F00;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -38,16 +39,19 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  /* tesing conditions */
+  background: #F00;
 }
 
 @media (min-width: 100vh) {
   .showdown-react-player-container {
     height: 100vh;
-    background: green;
+    /* background: green; */
   }
 }
 
-div.testy {
+div.fake-iframe-container {
   width: 0px;
   height: 0px;
   background: rebeccapurple;
@@ -68,39 +72,74 @@ div.fake-iframe {
   overflow: hidden;
 }
 
-/* Adapted from https://alexanderwallin.github.io/react-player-controls/ */
+/* from https://alexanderwallin.github.io/react-player-controls/ */
 
-.PlayButton, .PauseButton, .PrevButton, .NextButton, .SoundOnButton, .SoundOffButton {
+.PlayButton,
+.PauseButton,
+.PrevButton,
+.NextButton,
+.SoundOnButton,
+.SoundOffButton {
   margin-right: 10px;
   padding: 8px;
-  background: #fefefe00;
   border: 2px solid rgba(252, 100, 217, 0);
+  background: #00000000;
   outline: none;
   display: inline-block;
 }
 
-.PlayButton[disabled], .PauseButton[disabled], .PrevButton[disabled], .NextButton[disabled], .SoundOnButton[disabled], .SoundOffButton[disabled] {
+.PlayButton[disabled],
+.PauseButton[disabled],
+.PrevButton[disabled],
+.NextButton[disabled],
+.SoundOnButton[disabled],
+.SoundOffButton[disabled] {
   opacity: 0.5;
 }
 
-.PlayButton.isEnabled, .PauseButton.isEnabled, .PrevButton.isEnabled, .NextButton.isEnabled, .SoundOnButton.isEnabled, .SoundOffButton.isEnabled {
+.PlayButton.isEnabled,
+.PauseButton.isEnabled,
+.PrevButton.isEnabled,
+.NextButton.isEnabled,
+.SoundOnButton.isEnabled,
+.SoundOffButton.isEnabled {
   cursor: pointer;
 }
 
-.PlayButton.isEnabled:hover, .PauseButton.isEnabled:hover, .PrevButton.isEnabled:hover, .NextButton.isEnabled:hover, .SoundOnButton.isEnabled:hover, .SoundOffButton.isEnabled:hover {
-  border-color: #3ea454;
+.PlayButton.isEnabled:hover,
+.PauseButton.isEnabled:hover,
+.PrevButton.isEnabled:hover,
+.NextButton.isEnabled:hover,
+.SoundOnButton.isEnabled:hover,
+.SoundOffButton.isEnabled:hover {
+  /* border-color: #ff00cc;  */
 }
 
-.PlayButton.isEnabled:hover .Icon-shape, .PauseButton.isEnabled:hover .Icon-shape, .PrevButton.isEnabled:hover .Icon-shape, .NextButton.isEnabled:hover .Icon-shape, .SoundOnButton.isEnabled:hover .Icon-shape, .SoundOffButton.isEnabled:hover .Icon-shape {
-  fill: #3ea454;
+.PlayButton.isEnabled:hover .Icon-shape,
+.PauseButton.isEnabled:hover .Icon-shape,
+.PrevButton.isEnabled:hover .Icon-shape,
+.NextButton.isEnabled:hover .Icon-shape,
+.SoundOnButton.isEnabled:hover .Icon-shape,
+.SoundOffButton.isEnabled:hover .Icon-shape {
+  fill: #ff00cc;
 }
 
-.PlayButton.isEnabled:active, .PauseButton.isEnabled:active, .PrevButton.isEnabled:active, .NextButton.isEnabled:active, .SoundOnButton.isEnabled:active, .SoundOffButton.isEnabled:active {
-  border-color: rgba(62, 164, 84, 0.5);
+.PlayButton.isEnabled:active,
+.PauseButton.isEnabled:active,
+.PrevButton.isEnabled:active,
+.NextButton.isEnabled:active,
+.SoundOnButton.isEnabled:active,
+.SoundOffButton.isEnabled:active {
+  /* border-color: #ff00cc88; */
 }
 
-.PlayButton.isEnabled:active .Icon-shape, .PauseButton.isEnabled:active .Icon-shape, .PrevButton.isEnabled:active .Icon-shape, .NextButton.isEnabled:active .Icon-shape, .SoundOnButton.isEnabled:active .Icon-shape, .SoundOffButton.isEnabled:active .Icon-shape {
-  fill: rgba(62, 164, 84, 0.5);
+.PlayButton.isEnabled:active .Icon-shape,
+.PauseButton.isEnabled:active .Icon-shape,
+.PrevButton.isEnabled:active .Icon-shape,
+.NextButton.isEnabled:active .Icon-shape,
+.SoundOnButton.isEnabled:active .Icon-shape,
+.SoundOffButton.isEnabled:active .Icon-shape {
+  fill: #ffee00;
 }
 
 .Icon {
