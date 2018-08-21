@@ -1,9 +1,15 @@
 # Showdown Homescreen
 
+## Dependencies
+  - [React Player](https://github.com/CookPete/react-player)
+  - [React Player Controls](https://github.com/alexanderwallin/react-player-controls/)
+
 ## React Player Warnings/Issues
 
 - (Getting warning 'video is being deferred until the player has loaded')[https://github.com/CookPete/react-player/issues/413]
+
 - Vimeo permissions that prevent the video from loading may cause the player to not load subsequent videos withuot `onError` handler
+- Vimeo embed settings will affect the accuracy of the playstate
 
 ## CSS References for `player.js
 

@@ -1,3 +1,9 @@
+.player-controls {
+  flex-basis: 33%;
+  display: flex;
+  justify-content: center;
+}
+
 .PlayButton,
 .PauseButton,
 .PrevButton,
@@ -76,3 +82,6 @@
   fill: rgb(252, 100, 217);
 }
 
+.MuteToggleButton {
+  display: inline-block;
+}

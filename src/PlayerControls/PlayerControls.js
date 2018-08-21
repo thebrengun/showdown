@@ -2,6 +2,8 @@ import React from 'react'
 import PlayToggleButton from '../PlayToggleButton/PlayToggleButton'
 import { MuteToggleButton, PrevButton, NextButton } from 'react-player-controls'
 
+import './PlayerControls.css'
+
 export default ({
   isPlaying,
   isMuted,
@@ -16,7 +18,10 @@ export default ({
         isEnabled
         onClick={previousVideo}
       />
-      <PlayToggleButton togglePlay={togglePlay} />
+      <PlayToggleButton
+        togglePlay={togglePlay}
+        isPlaying={isPlaying}
+      />
       <MuteToggleButton
         isEnabled
         isMuted={isMuted}

@@ -7,29 +7,25 @@ export default class Menu extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      open: false,
-      activeVideo: this.props.playingSlug
+      open: false
     }
   }
 
-  sortVideos = () => {
-    return [...new Set([this.props.activeVideo, ...this.props.videos])].reverse()
-  }
-
   render () {
-    const sortedVideos = this.sortVideos()
-    const menuItems = sortedVideos.map((video, index) => {
+    if (!this.props.currentVideo) return <div style={{ color: 'white' }}>Loading...</div>
+    const titles = this.props.videos.map(video => video.title)
+    const menuItems = titles.map((title, index) => {
       const itemStyle = {
-        color: video === this.props.activeVideo ? 'rgb(252, 100, 217)' : 'white'
+        color: title === this.props.currentVideo.title ? 'rgb(252, 100, 217)' : 'white'
       }
       return (
         <a
           key={index}
-          onClick={this.props.changeVideo}
+          onClick={this.props.selectVideo}
           className={'menu-item'}
           style={itemStyle}
         >
-          {video}
+          {title}
         </a>
       )
     })
