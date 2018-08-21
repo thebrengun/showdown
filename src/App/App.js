@@ -4,37 +4,35 @@ import _ld from 'lodash' // TODO: remove later
 import { mod } from '../utils'
 import Menu from '../Menu/Menu'
 import VimeoPlayer from '../VimeoPlayer/VimeoPlayer'
+import dummyData from '../dummyData'
 
 // TODO: replace URLS w/ videos from a Vimeo Album via API call
-//   TODO: change embed setting to disbale controls via Vimeo Web UI or automate this process??!!
+//   TODO: change embed setting to disable controls via Vimeo Web UI or automate this process??!!
 
-// † https://github.com/CookPete/react-player/issues/413
-//   change permissions on vimeo, †causes ReactPlayer to not load next vid on state change
+// prod ENDPOINT: https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data
 
-// ENDPOINT: https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data
-
-const URLS = [
-  '201020459',
-  // '271551085', // †
-  '132463511',
-  '196027549'
-  // '95412461' // †
-  // '87955153' // controls on embed not disabled
-]
+// const URLS = [
+//   '201020459',
+//   '132463511',
+//   '196027549'
+// ]
 
 class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      videoSlugs: [],
+      videoSlugs: [], // change shape to match API's
       currentVideoSlug: null
     }
   }
 
   fetchVideos = () => {
+    const slugs = dummyData.data
+      .filter(item => item.type === 'vimeo_video')
+      .map(video => video.vimeo_id)
     this.setState(_ => ({
-      videoSlugs: URLS,
-      currentVideoSlug: _ld.sample(URLS)
+      videoSlugs: slugs,
+      currentVideoSlug: _ld.sample(slugs)
     }))
   }
 
@@ -72,6 +70,7 @@ class App extends Component {
             changeVideo={this.changeVideo}
             previousVideo={this.previousVideo}
             nextVideo={this.nextVideo}
+            onL
           />
         }
         <Menu
