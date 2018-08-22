@@ -32,11 +32,11 @@ export default class VimeoPlayer extends Component {
   }
 
   detachEventListeners = () => {
+    window.removeEventListener('resize', this.onResize)
     window.removeEventListener('keypress', this.handleKeyPress)
   }
 
   onResize = event => {
-    console.log(event)
     this.fetchVideoDimensions()
   }
 
@@ -50,15 +50,11 @@ export default class VimeoPlayer extends Component {
   }
 
   togglePlay = () => {
-    this.setState(prevState => ({
-      playing: !prevState.playing
-    }))
+    this.setState(prevState => ({ playing: !prevState.playing }))
   }
 
   toggleMute = () => {
-    this.setState(prevState => ({
-      volume: Number(!prevState.volume)
-    }))
+    this.setState(prevState => ({ volume: Number(!prevState.volume) }))
   }
 
   fetchVideoDimensions = () => {
@@ -116,7 +112,7 @@ export default class VimeoPlayer extends Component {
               playing={this.state.playing}
               loop // replace
               onBuffer={_ => console.log('Desire is the root of all buffering', _)}
-              onReady={this.onReady}
+              // onEnd
             />
           </div>
         </div>
@@ -133,6 +129,8 @@ export default class VimeoPlayer extends Component {
             toggleMute={this.toggleMute}
             previousVideo={this.props.previousVideo}
             nextVideo={this.props.nextVideo}
+            hasPrevious={this.props.hasPrevious}
+            hasNext={this.props.hasNext}
           />
           <div className='placeholder'>
             <p>

@@ -10,12 +10,14 @@ export default ({
   togglePlay,
   toggleMute,
   previousVideo,
-  nextVideo
+  nextVideo,
+  hasPrevious,
+  hasNext
 }) => {
   return (
     <div className={'player-controls'}>
       <PrevButton
-        isEnabled
+        isEnabled={hasPrevious}
         onClick={previousVideo}
       />
       <PlayToggleButton
@@ -28,7 +30,7 @@ export default ({
         onMuteChange={toggleMute}
       />
       <NextButton
-        isEnabled
+        isEnabled={hasNext}
         onClick={nextVideo}
       />
     </div>

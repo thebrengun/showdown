@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import _ld from 'lodash' // TODO: remove later
 
-import { mod } from '../utils'
 import fetchAssets from '../fetchAssets'
 
 // import Menu from '../Menu/Menu'
@@ -29,28 +27,36 @@ class PlayerContainer extends Component {
           previewUrl: null
         }
       ],
-      currentVideo: null
+      currentVideo: null,
+      hasPrevious: null,
+      hasNext: null
     }
   }
 
-  fetchAssets = () => {
-    const { videos, images } = fetchAssets()
-    console.log(videos, images)
-    this.setState(_ => ({
-      videos,
-      images,
-      currentVideo: _ld.sample(videos)
+  currentVideoIndex = () => {
+    return this.state.videos.findIndex(video => video.title === this.state.currentVideo.title)
+  }
+
+  checkNeighboringVideos = () => {
+    const currentVideoIndex = this.currentVideoIndex()
+    this.setState(prevState => ({
+      hasPrevious: Boolean(this.state.videos[currentVideoIndex - 1]),
+      hasNext: Boolean(this.state.videos[currentVideoIndex + 1])
     }))
   }
 
   previousVideo = () => {
+    const currentVideoIndex = this.currentVideoIndex()
+    this.setState(prevState => ({
+      currentVideo: prevState.videos[currentVideoIndex - 1]
+    }), this.checkNeighboringVideos)
   }
 
   nextVideo = () => {
-  }
-
-  componentDidMount = () => {
-    this.fetchAssets()
+    const currentVideoIndex = this.currentVideoIndex()
+    this.setState(prevState => ({
+      currentVideo: prevState.videos[currentVideoIndex + 1]
+    }), this.checkNeighboringVideos)
   }
 
   selectVideo = event => {
@@ -58,7 +64,20 @@ class PlayerContainer extends Component {
     event.persist()
     this.setState(prevState => ({
       currentVideo: prevState.videos.find(video => video.title === event.target.innerText)
-    }))
+    }), this.checkNeighboringVideos)
+  }
+
+  componentDidMount = () => {
+    this.fetchAssets()
+  }
+
+  fetchAssets = () => {
+    const { videos, images } = fetchAssets()
+    this.setState(_ => ({
+      videos,
+      images,
+      currentVideo: videos[0]
+    }), this.checkNeighboringVideos)
   }
 
   render () {
@@ -73,6 +92,8 @@ class PlayerContainer extends Component {
             selectVideo={this.selectVideo}
             previousVideo={this.previousVideo}
             nextVideo={this.nextVideo}
+            hasPrevious={this.state.hasPrevious}
+            hasNext={this.state.hasNext}
           />
         }
       </div>
