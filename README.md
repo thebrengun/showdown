@@ -1,5 +1,18 @@
 # Showdown Homescreen
 
+## Build Instructions
+
+The following commands will produce a folder called `build/`...
+
+```sh
+git clone git@github.com:superbuggy/showdown.git
+cd showdown/
+npm i
+npm run build
+```
+
+The directory `build/` will contain the compiled, minified code, stylesheet, and template.
+
 ## Dependencies
   - [React Player](https://github.com/CookPete/react-player)
   - [React Player Controls](https://github.com/alexanderwallin/react-player-controls/)
