@@ -6,7 +6,6 @@ import './VimeoPlayer.css'
 import ReactPlayer from 'react-player'
 import Menu from '../Menu/Menu'
 import PlayerControls from '../PlayerControls/PlayerControls'
-import News from '../News/News'
 
 // TODO: unmute on initial play
 // TODO: Add image type functionality
