@@ -48,6 +48,7 @@
 
 .placeholder {
   flex-basis: 33%;
+  color: white;
 }
 
 @media (min-width: 100vh) {

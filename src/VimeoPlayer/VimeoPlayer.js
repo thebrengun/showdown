@@ -22,7 +22,6 @@ export default class VimeoPlayer extends Component {
       height: null,
       aspectRatio: null
     },
-    // aspectRatio: window.innerWidth / window.innerHeight,
     volume: 0,
     playing: true
   }
@@ -51,11 +50,15 @@ export default class VimeoPlayer extends Component {
   }
 
   togglePlay = () => {
-    this.setState(prevState => ({ playing: !prevState.playing }))
+    this.setState(prevState => ({
+      playing: !prevState.playing
+    }))
   }
 
   toggleMute = () => {
-    this.setState(prevState => ({ volume: Number(!prevState.volume) }))
+    this.setState(prevState => ({
+      volume: Number(!prevState.volume)
+    }))
   }
 
   fetchVideoDimensions = () => {
@@ -78,11 +81,13 @@ export default class VimeoPlayer extends Component {
     return window.innerWidth / window.innerHeight < this.state.video.aspectRatio
       ? { // the player is relatively wider
         width: `${window.innerHeight * this.state.video.aspectRatio}px`,
-        height: `${window.innerHeight}px`
+        height: `${window.innerHeight}px`,
+        margin: `0px ${((window.innerHeight * this.state.video.aspectRatio) - window.innerWidth) / -2}px`
       }
       : { // the player is relatively narrower
         width: `${window.innerWidth}px`,
-        height: `${window.innerWidth / this.state.video.aspectRatio}px`
+        height: `${window.innerWidth / this.state.video.aspectRatio}px`,
+        margin: `${((window.innerWidth / this.state.video.aspectRatio) - window.innerHeight) / -2}px 0px`
       }
   }
 
@@ -96,22 +101,24 @@ export default class VimeoPlayer extends Component {
   }
 
   render () {
-    const {width, height} = this.playerDimensions()
+    const {width, height, margin} = this.playerDimensions()
     return (
       <div className={'containiest'}>
         <div className={'showdown-react-player-container'}>
-          <ReactPlayer
-            className={'react-player'}
-            url={`https://vimeo.com/${this.props.currentVideo.vimeoId}`}
-            width={width}
-            height={height}
-            style={{ width, height }}
-            volume={this.state.volume}
-            playing={this.state.playing}
-            loop // replace
-            onBuffer={_ => console.log('Desire is the root of all buffering', _)}
-            onReady={this.onReady}
-          />
+          <div style={{margin}}>
+            <ReactPlayer
+              className={'react-player'}
+              url={`https://vimeo.com/${this.props.currentVideo.vimeoId}`}
+              width={width}
+              height={height}
+              style={{ width, height }}
+              volume={this.state.volume}
+              playing={this.state.playing}
+              loop // replace
+              onBuffer={_ => console.log('Desire is the root of all buffering', _)}
+              onReady={this.onReady}
+            />
+          </div>
         </div>
         <div className={'controls-overlay'}>
           <Menu
@@ -127,7 +134,15 @@ export default class VimeoPlayer extends Component {
             previousVideo={this.props.previousVideo}
             nextVideo={this.props.nextVideo}
           />
-          <div className='placeholder' />
+          <div className='placeholder'>
+            <p>
+              {`pW: ${width} pW: ${window.innerWidth}`}
+            </p>
+            <p>
+              {`pH: ${height} wH: ${window.innerHeight}`}
+            </p>
+            <p>{margin}</p>
+          </div>
         </div>
       </div>
     )
