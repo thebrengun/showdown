@@ -8,7 +8,7 @@ import Menu from '../Menu/Menu'
 import PlayerControls from '../PlayerControls/PlayerControls'
 import News from '../News/News'
 
-// TODO: address weird bug with video playback...
+// TODO: unmute on initial play
 // TODO: Add image type functionality
 // TODO: slideshow functionality
 //  onEnd go to next video
@@ -29,7 +29,7 @@ export default class VimeoPlayer extends Component {
   }
 
   attachEventListeners = () => {
-    // window.addEventListener('resize', this.onResize)
+    window.addEventListener('resize', this.onResize)
     window.addEventListener('keypress', this.handleKeyPress)
   }
 
@@ -37,9 +37,10 @@ export default class VimeoPlayer extends Component {
     window.removeEventListener('keypress', this.handleKeyPress)
   }
 
-  // onResize = event => {
-  //   console.log(window.innerHeight, window.innerWidth)
-  // }
+  onResize = event => {
+    console.log(event)
+    this.fetchVideoDimensions()
+  }
 
   handleKeyPress = event => {
     if (event.key.toLowerCase() === 'm') {
@@ -75,20 +76,15 @@ export default class VimeoPlayer extends Component {
   }
 
   playerDimensions = () => {
-    return window.innerWidth / window.innerHeight > this.state.video.aspectRatio
+    return window.innerWidth / window.innerHeight < this.state.video.aspectRatio
       ? { // the player is relatively wider
-        width: window.innerHeight * this.state.video.aspectRatio,
-        height: window.innerHeight
+        width: `${window.innerHeight * this.state.video.aspectRatio}px`,
+        height: `${window.innerHeight}px`
       }
       : { // the player is relatively narrower
-        width: window.innerWidth,
-        height: window.innerWidth / this.state.video.aspectRatio
+        width: `${window.innerWidth}px`,
+        height: `${window.innerWidth / this.state.video.aspectRatio}px`
       }
-  }
-
-  onReady = () => {
-    // const iframe = document.querySelector('iframe')
-    // console.log(iframe.parentElement)
   }
 
   componentDidMount () {
@@ -101,23 +97,15 @@ export default class VimeoPlayer extends Component {
   }
 
   render () {
-    const whatItDo = window.innerWidth / window.innerHeight > this.state.video.aspectRatio
-      ? 'container relatively wider than video'
-      : 'container relatively narrower than video'
-    console.log(whatItDo)
-    const { width: playerWidth, height: playerHeight } = this.playerDimensions()
-    const [width, height] = [`${playerWidth}px`, `${playerHeight}px`]
-    const containerAspectRatio = window.innerWidth / window.innerHeight
-    console.log('\nwindow', containerAspectRatio, '\nvideo', this.state.video.aspectRatio)
-    console.log('\nplayer', width, height, '\nWindow', window.innerWidth, window.innerHeight)
+    const {width, height} = this.playerDimensions()
     return (
       <div className={'containiest'}>
         <div className={'showdown-react-player-container'}>
           <ReactPlayer
             className={'react-player'}
             url={`https://vimeo.com/${this.props.currentVideo.vimeoId}`}
-            width={playerWidth}
-            height={playerHeight}
+            width={width}
+            height={height}
             style={{ width, height }}
             volume={this.state.volume}
             playing={this.state.playing}
