@@ -24,9 +24,6 @@
 
 .react-player {
   overflow: hidden;
-
-  /* testing conditions */
-  /* display: none; */
 }
 
 .showdown-react-player-container {
@@ -41,9 +38,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
-  /* testing conditions */
-  /* background: #F00; */
 }
 
 .placeholder {
@@ -54,35 +48,5 @@
 @media (min-width: 100vh) {
   .showdown-react-player-container {
     height: 100vh;
-
-    /* testing conditions */
-    /* background: green; */
   }
-}
-
-
-.showdown-react-player-container iframe {
-  /* transform: translate(-50%,-50%); */
-  /* transform: translateX(-25%); */
-  
-  /* position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-}
-
-div.fake-iframe-container {
-  width: 0px;
-  height: 0px;
-
-  /* testing conditions */
-  background: rebeccapurple;
-}
-
-div.fake-iframe {
-  /* width: 900px; */
-  /* height: 500px; */
-  transform: translate(-50%,-50%);
-  background: blue;
 }

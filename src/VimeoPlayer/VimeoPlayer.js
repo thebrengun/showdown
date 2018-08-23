@@ -110,7 +110,7 @@ export default class VimeoPlayer extends Component {
               style={{ width, height }}
               volume={this.state.volume}
               playing={this.state.playing}
-              loop // replace
+              onEnded={this.props.nextVideo}
               onBuffer={_ => console.log('Desire is the root of all buffering', _)}
               // onEnd
             />
@@ -132,15 +132,7 @@ export default class VimeoPlayer extends Component {
             hasPrevious={this.props.hasPrevious}
             hasNext={this.props.hasNext}
           />
-          <div className='placeholder'>
-            <p>
-              {`pW: ${width} pW: ${window.innerWidth}`}
-            </p>
-            <p>
-              {`pH: ${height} wH: ${window.innerHeight}`}
-            </p>
-            <p>{margin}</p>
-          </div>
+          <div className='placeholder' />
         </div>
       </div>
     )

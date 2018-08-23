@@ -47,24 +47,33 @@ class PlayerContainer extends Component {
 
   previousVideo = () => {
     const currentVideoIndex = this.currentVideoIndex()
-    this.setState(prevState => ({
-      currentVideo: prevState.videos[currentVideoIndex - 1]
-    }), this.checkNeighboringVideos)
+    this.setState(
+      prevState => ({
+        currentVideo: prevState.videos[currentVideoIndex - 1]
+      }),
+      this.checkNeighboringVideos
+    )
   }
 
   nextVideo = () => {
     const currentVideoIndex = this.currentVideoIndex()
-    this.setState(prevState => ({
-      currentVideo: prevState.videos[currentVideoIndex + 1]
-    }), this.checkNeighboringVideos)
+    this.setState(
+      prevState => ({
+        currentVideo: prevState.videos[currentVideoIndex + 1]
+      }),
+      this.checkNeighboringVideos
+    )
   }
 
   selectVideo = event => {
     event.preventDefault()
     event.persist()
-    this.setState(prevState => ({
-      currentVideo: prevState.videos.find(video => video.title === event.target.innerText)
-    }), this.checkNeighboringVideos)
+    this.setState(
+      prevState => ({
+        currentVideo: prevState.videos.find(video => video.title === event.target.innerText)
+      }),
+      this.checkNeighboringVideos
+    )
   }
 
   componentDidMount = () => {
@@ -73,11 +82,14 @@ class PlayerContainer extends Component {
 
   fetchAssets = () => {
     const { videos, images } = fetchAssets()
-    this.setState(_ => ({
-      videos,
-      images,
-      currentVideo: videos[0]
-    }), this.checkNeighboringVideos)
+    this.setState(
+      _ => ({
+        videos,
+        images,
+        currentVideo: videos[0]
+      }),
+      this.checkNeighboringVideos
+    )
   }
 
   render () {
