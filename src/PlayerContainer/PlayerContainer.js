@@ -2,35 +2,42 @@ import React, { Component } from 'react'
 
 import fetchAssets from '../fetchAssets'
 
-// import Menu from '../Menu/Menu'
 import VimeoPlayer from '../VimeoPlayer/VimeoPlayer'
+import CoverImage from '../CoverImage/CoverImage'
 
 class PlayerContainer extends Component {
   constructor (props) {
     super(props)
-    this.state = {
+    this.state = { // state shape
       videos: [
-        {
-          title: null,
-          vimeoId: null,
-          height: null,
-          width: null,
-          previewUrl: null
-        }
+        // {
+        //   title: null,
+        //   vimeoId: null,
+        //   height: null,
+        //   width: null,
+        //   previewUrl: null
+        // }
       ],
       images: [
-        {
-          title: null,
-          vimeoId: null,
-          height: null,
-          width: null,
-          previewUrl: null
-        }
+        // {
+        //   title: null,
+        //   vimeoId: null,
+        //   height: null,
+        //   width: null,
+        //   previewUrl: null
+        // }
       ],
       currentVideo: null,
       hasPrevious: null,
-      hasNext: null
+      hasNext: null,
+      imageIsShown: true
     }
+    this.timeoutDuration = 2000
+    this.timeoutId = null
+  }
+
+  loadVideo = () => {
+    this.setState(prevState => ({ imageIsShown: false }))
   }
 
   currentVideoIndex = () => {
@@ -76,10 +83,6 @@ class PlayerContainer extends Component {
     )
   }
 
-  componentDidMount = () => {
-    this.fetchAssets()
-  }
-
   fetchAssets = () => {
     const { videos, images } = fetchAssets()
     this.setState(
@@ -92,24 +95,28 @@ class PlayerContainer extends Component {
     )
   }
 
+  componentDidMount = () => {
+    this.fetchAssets()
+    this.setState(prevState => ({
+      timeoutId: window.setInterval(this.loadVideo, this.timeoutDuration)
+    }))
+  }
+
   render () {
     const { currentVideo, videos } = this.state
-    return (
-      <div>
-        {
-          currentVideo &&
-          <VimeoPlayer
-            currentVideo={currentVideo}
-            videos={videos}
-            selectVideo={this.selectVideo}
-            previousVideo={this.previousVideo}
-            nextVideo={this.nextVideo}
-            hasPrevious={this.state.hasPrevious}
-            hasNext={this.state.hasNext}
-          />
-        }
-      </div>
-    )
+    const component = currentVideo && !this.state.imageIsShown
+      ? <VimeoPlayer
+        currentVideo={currentVideo}
+        videos={videos}
+        selectVideo={this.selectVideo}
+        previousVideo={this.previousVideo}
+        nextVideo={this.nextVideo}
+        hasPrevious={this.state.hasPrevious}
+        hasNext={this.state.hasNext}
+      />
+      : <CoverImage />
+
+    return component
   }
 }
 

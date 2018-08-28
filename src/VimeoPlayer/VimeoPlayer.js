@@ -7,13 +7,9 @@ import ReactPlayer from 'react-player'
 import Menu from '../Menu/Menu'
 import PlayerControls from '../PlayerControls/PlayerControls'
 
-// TODO: unmute on initial play
 // TODO: Add image type functionality
-// TODO: slideshow functionality
-//  onEnd go to next video
 // TODO: customize loading screen with onStart
 //   Use [monster?] images for loading in between videos
-// TODO: change dimensions of player on window resize
 
 export default class VimeoPlayer extends Component {
   state = {
@@ -112,7 +108,6 @@ export default class VimeoPlayer extends Component {
               playing={this.state.playing}
               onEnded={this.props.nextVideo}
               onBuffer={_ => console.log('Desire is the root of all buffering', _)}
-              // onEnd
             />
           </div>
         </div>
