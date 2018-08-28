@@ -3,11 +3,15 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  animation: lightning 2s infinite;
+  width: 100vw;
+  height: 100vh;
+  background: black;
 }
 
 img.monster {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   object-fit: contain;
   margin: 0 auto;
   animation: pulse 2s infinite;
@@ -30,5 +34,36 @@ img.monster {
     opacity: 0;
     height: 300vh;
     width: 300vw;
+  }
+}
+
+
+@keyframes lightning {
+  74% {
+    background: black;
+  }
+
+  75% {
+    background: white;
+  }
+
+  78% {
+    background: black;
+  }
+
+  82% {
+    background: white;
+  }
+
+  84% {
+    background: black;
+  }
+
+  87% {
+    background: white;
+  }
+  
+  99% {
+    background: black;
   }
 }
