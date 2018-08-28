@@ -66,10 +66,13 @@ class PlayerContainer extends Component {
 
   nextVideo = event => {
     // event.persist()
-    this.setState(prevState => {
-      const currentVideoIndex = this.currentVideoIndex(prevState)
-      return { currentVideo: prevState.videos[currentVideoIndex + 1] }
-    }, this.handleVideoChange)
+    this.setState(
+      prevState => {
+        const currentVideoIndex = this.currentVideoIndex(prevState)
+        return { currentVideo: prevState.videos[currentVideoIndex + 1] }
+      },
+      this.handleVideoChange
+    )
   }
 
   selectVideo = event => {
@@ -77,7 +80,8 @@ class PlayerContainer extends Component {
     event.persist()
     const byTitle = video => video.title === event.target.innerText
     this.setState(
-      prevState => ({ currentVideo: prevState.videos.find(byTitle) })
+      prevState => ({ currentVideo: prevState.videos.find(byTitle) }),
+      this.handleVideoChange
     )
   }
 
