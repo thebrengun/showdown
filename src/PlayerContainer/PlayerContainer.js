@@ -52,7 +52,6 @@ class PlayerContainer extends Component {
   }
 
   handleVideoChange = () => {
-    window.clearInterval(this.timeoutId)
     this.showImage()
     this.checkNeighboringVideos()
   }
@@ -99,9 +98,10 @@ class PlayerContainer extends Component {
   }
 
   showImage = () => {
+    window.clearInterval(this.timeoutId)
     this.setState(prevState => ({
       isImageShown: true,
-      timeoutId: window.setInterval(this.hideImage, this.timeoutDuration)
+      timeoutId: window.setTimeout(this.hideImage, this.timeoutDuration)
     }))
   }
 
@@ -116,6 +116,8 @@ class PlayerContainer extends Component {
 
   render () {
     const { currentVideo, videos, isImageShown } = this.state
+
+    console.log(isImageShown, this.timeoutId)
 
     return currentVideo && !isImageShown
       ? <VimeoPlayer
