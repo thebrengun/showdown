@@ -11,9 +11,11 @@ export default ({url}) => {
   const randomImage = () => images[parseInt(Math.random() * images.length, 10)]
   console.log(randomImage())
   return (
-    <img
-      className='monster'
-      src={randomImage()}
-    />
+    <div className='monster-container'>
+      <img
+        className='monster'
+        src={randomImage()}
+      />
+    </div>
   )
 }

@@ -116,9 +116,6 @@ class PlayerContainer extends Component {
 
   render () {
     const { currentVideo, videos, isImageShown } = this.state
-
-    console.log(isImageShown, this.timeoutId)
-
     return currentVideo && !isImageShown
       ? <VimeoPlayer
         currentVideo={currentVideo}
