@@ -30,56 +30,55 @@ class PlayerContainer extends Component {
       currentVideo: null,
       hasPrevious: null,
       hasNext: null,
-      imageIsShown: true
+      isImageShown: true
     }
     this.timeoutDuration = 2000
     this.timeoutId = null
   }
 
-  loadVideo = () => {
-    this.setState(prevState => ({ imageIsShown: false }))
-  }
-
-  currentVideoIndex = () => {
-    return this.state.videos.findIndex(video => video.title === this.state.currentVideo.title)
+  currentVideoIndex = state => {
+    const byCurrentTitle = video => video.title === state.currentVideo.title
+    return state.videos.findIndex(byCurrentTitle)
   }
 
   checkNeighboringVideos = () => {
-    const currentVideoIndex = this.currentVideoIndex()
-    this.setState(prevState => ({
-      hasPrevious: Boolean(this.state.videos[currentVideoIndex - 1]),
-      hasNext: Boolean(this.state.videos[currentVideoIndex + 1])
-    }))
+    this.setState(prevState => {
+      const currentVideoIndex = this.currentVideoIndex(prevState)
+      return {
+        hasPrevious: Boolean(prevState.videos[currentVideoIndex - 1]),
+        hasNext: Boolean(prevState.videos[currentVideoIndex + 1])
+      }
+    })
   }
 
-  previousVideo = () => {
-    const currentVideoIndex = this.currentVideoIndex()
-    this.setState(
-      prevState => ({
-        currentVideo: prevState.videos[currentVideoIndex - 1]
-      }),
-      this.checkNeighboringVideos
-    )
+  handleVideoChange = () => {
+    window.clearInterval(this.timeoutId)
+    this.showImage()
+    this.checkNeighboringVideos()
   }
 
-  nextVideo = () => {
-    const currentVideoIndex = this.currentVideoIndex()
-    this.setState(
-      prevState => ({
-        currentVideo: prevState.videos[currentVideoIndex + 1]
-      }),
-      this.checkNeighboringVideos
-    )
+  previousVideo = event => {
+    // event.persist()
+    this.setState(prevState => {
+      const currentVideoIndex = this.currentVideoIndex(prevState)
+      return { currentVideo: prevState.videos[currentVideoIndex - 1] }
+    }, this.handleVideoChange)
+  }
+
+  nextVideo = event => {
+    // event.persist()
+    this.setState(prevState => {
+      const currentVideoIndex = this.currentVideoIndex(prevState)
+      return { currentVideo: prevState.videos[currentVideoIndex + 1] }
+    }, this.handleVideoChange)
   }
 
   selectVideo = event => {
     event.preventDefault()
     event.persist()
+    const byTitle = video => video.title === event.target.innerText
     this.setState(
-      prevState => ({
-        currentVideo: prevState.videos.find(video => video.title === event.target.innerText)
-      }),
-      this.checkNeighboringVideos
+      prevState => ({ currentVideo: prevState.videos.find(byTitle) })
     )
   }
 
@@ -95,16 +94,30 @@ class PlayerContainer extends Component {
     )
   }
 
-  componentDidMount = () => {
-    this.fetchAssets()
+  hideImage = () => {
+    this.setState(prevState => ({ isImageShown: false }))
+  }
+
+  showImage = () => {
     this.setState(prevState => ({
-      timeoutId: window.setInterval(this.loadVideo, this.timeoutDuration)
+      isImageShown: true,
+      timeoutId: window.setInterval(this.hideImage, this.timeoutDuration)
     }))
   }
 
+  componentWillUnmount = () => {
+    window.clearInterval(this.timeoutId)
+  }
+
+  componentDidMount = () => {
+    this.fetchAssets()
+    this.showImage()
+  }
+
   render () {
-    const { currentVideo, videos } = this.state
-    const component = currentVideo && !this.state.imageIsShown
+    const { currentVideo, videos, isImageShown } = this.state
+
+    return currentVideo && !isImageShown
       ? <VimeoPlayer
         currentVideo={currentVideo}
         videos={videos}
@@ -115,8 +128,6 @@ class PlayerContainer extends Component {
         hasNext={this.state.hasNext}
       />
       : <CoverImage />
-
-    return component
   }
 }
 
