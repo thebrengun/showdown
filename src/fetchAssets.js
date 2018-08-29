@@ -5,7 +5,8 @@ import dummyData from './dummyData'
 export default fetchAssets
 
 function fetchAssets () {
-  return reshapeData(dummyData)
+  const data = window.slideshow_data || dummyData
+  return reshapeData(data)
 }
 
 function reshapeData (response) {

@@ -1,4 +1,5 @@
 {
+  "dummyData": "true",
   "data": [
     {
       "title": "SILVER SOUND SHOWDOWN CALL FOR ENTRIES",
@@ -32,6 +33,5 @@
       "height": "720",
       "vimeo_image": "http://i.vimeocdn.com/video/713714517_640.jpg"
     }
-  ],
-  "success": "true"
+  ]
 }
