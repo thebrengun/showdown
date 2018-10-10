@@ -19,12 +19,12 @@ The directory `build/` will contain the compiled, minified code, stylesheet, and
 
 ## React Player Warnings/Issues
 
-- (Getting warning 'video is being deferred until the player has loaded')[https://github.com/CookPete/react-player/issues/413]
+- [Getting warning 'video is being deferred until the player has loaded'](https://github.com/CookPete/react-player/issues/413)
 
 - Vimeo permissions that prevent the video from loading may cause the player to not load subsequent videos withuot `onError` handler
 - Vimeo embed settings will affect the accuracy of the playstate
 
-## CSS References for `player.js
+## CSS References for `player.js`
 
 - [How player manages the size](https://github.com/vimeo/player.js/blob/dfc3f922e4676b66624dbaa89b3d8f9144c092f1/src/lib/embed.js#L194)
 ```js
