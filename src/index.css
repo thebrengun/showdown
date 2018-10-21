@@ -1,12 +1,5 @@
-/*@import url('https://fonts.googleapis.com/css?family=Arimo');*/
-
-body {
-   margin: 0;
-  padding: 0;
-  /*font-family: Arimo, sans-serif;
-  background: black; */
-}
-
 #slideshow-root {
-  min-height: 100vh;
+	position: fixed;
+	top: 0;
+	z-index: -1;
 }

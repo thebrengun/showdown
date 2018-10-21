@@ -5,7 +5,7 @@
   overflow: hidden;
   animation: lightning 2s infinite;
   width: 100vw;
-  height: 100vh;
+  height: 100vw;
   background: black;
 }
 
@@ -65,5 +65,11 @@ img.monster {
   
   99% {
     background: black;
+  }
+}
+
+@media (min-width: 100vh) {
+  .monster-container {
+    height: 100vh;
   }
 }

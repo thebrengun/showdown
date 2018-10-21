@@ -19,7 +19,8 @@ export default ({ url }) => {
     <div className='monster-container'>
       <img
         className='monster'
-        src={randomImage()}
+        src={randomImage()} 
+        alt="Musical Monster"
       />
     </div>
   )

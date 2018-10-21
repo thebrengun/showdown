@@ -1,40 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Showdown X</title>
+	<link rel="stylesheet" type="text/css" href="css/web.css" />
+	<link rel="stylesheet" type="text/css" href="static/css/main.3fe27902.css" />
+</head>
+<body>
+	<div id="color-scroll"></div>
+  <div id="slideshow-root"></div>
+	<div id="site-wrapper" class="site-wrapper">
+		<header>
+			<div class="header">
+				<div class="inner-header">
+					<h1 class="logo">
+						<span class="u-hidden">Showdown X</span>
+						<img src="assets/showdown-logo.svg" alt="Showdown X" />
+					</h1>
+					<div class="nav-wrapper">
+						<div class="nav closed" id="nav">
+							<button class="nav-btn" id="nav-btn">
+								<span class="u-hidden">Toggle Nav</span>
+							</button>
+							<nav class="menu-wrapper">
+								<div class="menu">
+									<ul class="menu-list">
+										<li class="menu-list-item">
+											<a href="#" class="menu-list-link">Lineup</a>
+										</li>
+										<li class="menu-list-item">
+											<a href="#" class="menu-list-link">Collaborations</a>
+										</li>
+										<li class="menu-list-item">
+											<a href="#" class="menu-list-link">Enter</a>
+										</li>
+										<li class="menu-list-item">
+											<a href="#" class="menu-list-link">Past Festivals</a>
+										</li>
+										<li class="menu-list-item">
+											<a href="#" class="menu-list-link">Sponsors</a>
+										</li>
+										<li class="menu-list-item">
+											<a href="#" class="menu-list-link tickets-link">Tickets</a>
+										</li>
+									</ul>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="main-wrapper">
+      <div class="main">
+  			<article class="news">
+  				<header>
+  					<h2>News</h2>
+  				</header>
+  				<section class="news-stories">
+  					<article class="news-story">
+  						<p>Now accepting music video submissions for the 2019 festival on Film Freeway! <a href="#">Submit Here.</a></p>
+  					</article>
+  					<article class="news-story">
+  						<p>Here's a second news story to show paragraph spacing.</p>
+  					</article>
+  					<article class="news-story">
+  						<p>News stories could be separated by an em dash? I kind of like how primative it is as a divider. I think it fits stylistically with the rest of the site. Will there ever be a situation where there will be multiple news stories like this?</p>
+  					</article>
+  				</section>
+  			</article>
+  			<article class="music-videos">
+  				<header>
+  					<h2>Music Videos</h2>
+  				</header>
+  				<section>
+  					<span>The quick brown fox jumps over the lazy dog.</span>
+  				</section>
+  				<section class="music-video-links">
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  					<a href="#" class="music-video-link">
+  						<span class="music-video-link-thumbnail">
+  							<img src="assets/mv-placeholder.jpg" alt="Music Video Picture" />
+  						</span>
+  						<span class="music-video-link-text">Music Video</span>
+  					</a>
+  				</section>
+  			</article>
+      </div>
+		</main>
+	</div>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Silver Sound Showdown</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="slideshow-root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+	<script type="text/javascript" src="static/js/main.753f74e3.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('scroll', handleScroll);
+    document.addEventListener('touchstart', handleDetectedMobile);
+		createMenu(document.getElementById('nav'), document.getElementById('nav-btn'));
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+		function handleScroll(e) {
+			var colorScroll = document.getElementById('color-scroll');
+			var slideshow = document.getElementById('slideshow-root');
+			var scrollY = window.scrollY * 1.5;
+			colorScroll.style.backgroundPosition = '0px ' + scrollY + 'px';
+      if(!slideshow.style.top) {
+        console.log(slideshow.scrollTop);
+      }
+			slideshow.style.top = window.scrollY * -.5 + 'px';
+		}
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    function handleDetectedMobile(e) {
+      var siteWrapper = document.getElementById('site-wrapper');
+      var classList = getClassList(siteWrapper.className);
+      if(classList.indexOf('mobile') === -1) {
+        classList.push('mobile');
+      }
+      siteWrapper.className = classList.join(' ');
+    }
+
+		function createMenu(nav, toggleBtn) {
+			if(!nav || !toggleBtn) {
+				throw new Error('Could not find one or more nodes passed to create menu!');
+			}
+
+			toggleBtn.addEventListener('click', handleToggleClick);
+
+			function handleToggleClick() {
+				var classes = getClassList(nav.className);
+				var closedClass = classes.indexOf('closed');
+				var openClass = classes.indexOf('open');
+				if(closedClass > -1) {
+					classes.splice(closedClass, 1);
+					classes.push('open');
+				} else if(openClass > -1) {
+					classes.splice(openClass, 1);
+					classes.push('closed');
+				}
+				nav.className = classes.join(' ');
+			}
+		}
+
+		function getClassList(name) {
+			var classList = name.split(' ');
+			for(var i = 0; i < classList.length; i++) {
+				classList[i] = classList[i].trim();
+			}
+			return classList;
+		}
+	</script>
+</body>
 </html>

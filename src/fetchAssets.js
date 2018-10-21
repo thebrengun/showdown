@@ -4,6 +4,11 @@ import dummyData from './dummyData'
 
 export default fetchAssets
 
+// function fetchAssets() {
+//   const url = 'https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data';
+//   return fetch(url, {mode: 'cors'}).then(reshapeData);
+// }
+
 function fetchAssets () {
   const data = window.slideshow_data || dummyData
   return reshapeData(data)
