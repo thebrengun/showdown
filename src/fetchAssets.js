@@ -1,17 +1,32 @@
 import dummyData from './dummyData'
-// TODO: replace with API call to
-// https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data
 
-export default fetchAssets
+export default function fetchAssets() {
+  return new Promise(function(resolve, reject) {
+    const url = 'https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data';
+    const request = new XMLHttpRequest();
+    request.withCredentials = true;
 
-// function fetchAssets() {
-//   const url = 'https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data';
-//   return fetch(url, {mode: 'cors'}).then(reshapeData);
-// }
+    request.open('GET', url);
+    request.responseType = 'text';
+    request.onreadystatechange = () => {
+      if(request.readyState === 4 && request.status === 200) {
+        const response = JSON.parse(request.response);
+        if(response.success === "true") {
+          resolve(reshapeData(response));
+        } else {
+          resolve(dummyFetchAssets(new Error('Response received with success: false.')));
+        }
+      }
+    };
+    request.send();
+  }).then(response => response, dummyFetchAssets);
+}
 
-function fetchAssets () {
-  const data = window.slideshow_data || dummyData
-  return reshapeData(data)
+function dummyFetchAssets (error) {
+  // Fallback on the dummy data. It's small enough to be worth including.
+  console.log('Slideshow data request failed. Falling back on dummy data!', error);
+  const data = window.slideshow_data || dummyData;
+  return reshapeData(data);
 }
 
 function reshapeData (response) {

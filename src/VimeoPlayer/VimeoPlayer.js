@@ -7,6 +7,8 @@ import ReactPlayer from 'react-player'
 import Menu from '../Menu/Menu'
 import PlayerControls from '../PlayerControls/PlayerControls'
 
+import makeCancelable from '../makeCancelable.js';
+
 // TODO: Add image type functionality
 // TODO: customize loading screen with onStart
 //   Use [monster?] images for loading in between videos
@@ -23,6 +25,7 @@ export default class VimeoPlayer extends Component {
   }
 
   attachEventListeners = () => {
+    this.cancelablePromises = [];
     window.addEventListener('resize', this.onResize)
     window.addEventListener('keypress', this.handleKeyPress)
   }
@@ -30,6 +33,7 @@ export default class VimeoPlayer extends Component {
   detachEventListeners = () => {
     window.removeEventListener('resize', this.onResize)
     window.removeEventListener('keypress', this.handleKeyPress)
+    this.cancelablePromises.map(cancelablePromise => cancelablePromise.cancel());
   }
 
   onResize = event => {
@@ -55,7 +59,7 @@ export default class VimeoPlayer extends Component {
 
   fetchVideoDimensions = () => {
     const VIMEO_ENDPOINT = 'https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/'
-    axios.get(`${VIMEO_ENDPOINT}${this.props.currentVideo.vimeoId}`)
+    const cancelablePromise = makeCancelable(axios.get(`${VIMEO_ENDPOINT}${this.props.currentVideo.vimeoId}`)
       .then(response => {
         this.setState(prevState => ({
           video: {
@@ -66,7 +70,8 @@ export default class VimeoPlayer extends Component {
           }
         }))
       })
-      .catch(anOopsy => console.error(anOopsy))
+      .catch(anOopsy => console.error(anOopsy)));
+      this.cancelablePromises.push(cancelablePromise);
   }
 
   playerDimensions = () => {
@@ -84,8 +89,8 @@ export default class VimeoPlayer extends Component {
   }
 
   componentDidMount () {
-    this.fetchVideoDimensions()
     this.attachEventListeners()
+    this.fetchVideoDimensions()
   }
 
   componentWillUnmount () {
