@@ -68,8 +68,9 @@ class PlayerContainer extends Component {
     // event.persist()
     this.setState(
       prevState => {
-        const currentVideoIndex = this.currentVideoIndex(prevState)
-        return { currentVideo: prevState.videos[currentVideoIndex + 1] }
+        const currentVideoIndex = this.currentVideoIndex(prevState);
+        const inBounds = currentVideoIndex + 1 < prevState.videos.length;
+        return { currentVideo: prevState.videos[inBounds ? currentVideoIndex + 1 : 0] }
       },
       this.handleVideoChange
     )
@@ -86,15 +87,22 @@ class PlayerContainer extends Component {
   }
 
   fetchAssets = () => {
-    const { videos, images } = fetchAssets()
-    this.setState(
-      _ => ({
-        videos,
-        images,
-        currentVideo: videos[0]
-      }),
-      this.checkNeighboringVideos
-    )
+    fetchAssets().then(
+      response => {
+        const { videos, images } = response;
+        this.setState(
+          _ => ({
+            videos,
+            images,
+            currentVideo: videos[0]
+          }),
+          this.checkNeighboringVideos
+        );
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   hideImage = () => {
