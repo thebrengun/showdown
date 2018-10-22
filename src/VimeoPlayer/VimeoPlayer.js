@@ -71,7 +71,7 @@ export default class VimeoPlayer extends Component {
         }))
       })
       .catch(anOopsy => console.error(anOopsy)));
-      this.cancelablePromises.push(cancelablePromise);
+    this.cancelablePromises.push(cancelablePromise);
   }
 
   playerDimensions = () => {
