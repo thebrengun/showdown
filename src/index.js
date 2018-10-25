@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Slideshow from './Slideshow/Slideshow.js'
 import ColorScroll from './ColorScroll/ColorScroll.js'
+import Nav from './Nav/Nav.js'
 import registerServiceWorker from './registerServiceWorker'
 
 /* 
@@ -17,4 +18,5 @@ import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(<Slideshow />, document.getElementById('slideshow'));
 ReactDOM.render(<ColorScroll />, document.getElementById('color-scroll'));
+ReactDOM.render(<Nav />, document.getElementById('nav-wrapper'));
 registerServiceWorker()

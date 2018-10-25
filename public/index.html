@@ -20,36 +20,38 @@
 						<span class="u-hidden">Showdown X</span>
 						<img src="assets/showdown-logo.svg" alt="Showdown X" />
 					</h1>
-					<div class="nav-wrapper">
-						<div class="nav closed" id="nav">
-							<button class="nav-btn" id="nav-btn">
-								<span class="u-hidden">Toggle Nav</span>
-							</button>
-							<nav class="menu-wrapper">
-								<div class="menu">
-									<ul class="menu-list">
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Lineup</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Collaborations</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Enter</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Past Festivals</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Sponsors</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link tickets-link">Tickets</a>
-										</li>
-									</ul>
-								</div>
-							</nav>
-						</div>
+					<div id="nav-wrapper">
+            <noscript>
+              <div class="ns-nav-container">
+                <div class="nav hide-desktop">
+                  <a href="#ns-nav" class="nav-btn">
+                    <span class="u-hidden">Toggle Nav</span>
+                  </a>
+                </div>
+                <nav class="ns-menu-wrapper hide-mobile">
+                  <ul class="ns-menu-list">
+                    <li class="menu-list-item">
+                      <a href="#" class="menu-list-link">Lineup</a>
+                    </li>
+                    <li class="menu-list-item">
+                      <a href="#" class="menu-list-link">Collaborations</a>
+                    </li>
+                    <li class="menu-list-item">
+                      <a href="#" class="menu-list-link">Enter</a>
+                    </li>
+                    <li class="menu-list-item">
+                      <a href="#" class="menu-list-link">Past Festivals</a>
+                    </li>
+                    <li class="menu-list-item">
+                      <a href="#" class="menu-list-link">Sponsors</a>
+                    </li>
+                    <li class="menu-list-item">
+                      <a href="#" class="menu-list-link tickets-link">Tickets</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </noscript>
 					</div>
 				</div>
 			</div>
@@ -59,6 +61,7 @@
   			<article class="news">
   				<header>
   					<h2>News</h2>
+            <div id="nav-wrapper-fake" class="u-hidden"></div>
   				</header>
   				<section class="news-stories">
   					<article class="news-story">
@@ -132,40 +135,31 @@
   			</article>
       </div>
 		</main>
+    <footer>
+      <nav id="ns-nav" class="ns-menu-wrapper hide-desktop">
+          <ul class="ns-menu-list">
+            <li class="menu-list-item">
+              <a href="#" class="menu-list-link">Lineup</a>
+            </li>
+            <li class="menu-list-item">
+              <a href="#" class="menu-list-link">Collaborations</a>
+            </li>
+            <li class="menu-list-item">
+              <a href="#" class="menu-list-link">Enter</a>
+            </li>
+            <li class="menu-list-item">
+              <a href="#" class="menu-list-link">Past Festivals</a>
+            </li>
+            <li class="menu-list-item">
+              <a href="#" class="menu-list-link">Sponsors</a>
+            </li>
+            <li class="menu-list-item">
+              <a href="#" class="menu-list-link tickets-link">Tickets</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </footer>
 	</div>
-
-	<script type="text/javascript">
-		createMenu(document.getElementById('nav'), document.getElementById('nav-btn'));
-
-		function createMenu(nav, toggleBtn) {
-			if(!nav || !toggleBtn) {
-				throw new Error('Could not find one or more nodes passed to create menu!');
-			}
-
-			toggleBtn.addEventListener('click', handleToggleClick);
-
-			function handleToggleClick() {
-				var classes = getClassList(nav.className);
-				var closedClass = classes.indexOf('closed');
-				var openClass = classes.indexOf('open');
-				if(closedClass > -1) {
-					classes.splice(closedClass, 1);
-					classes.push('open');
-				} else if(openClass > -1) {
-					classes.splice(openClass, 1);
-					classes.push('closed');
-				}
-				nav.className = classes.join(' ');
-			}
-		}
-
-		function getClassList(name) {
-			var classList = name.split(' ');
-			for(var i = 0; i < classList.length; i++) {
-				classList[i] = classList[i].trim();
-			}
-			return classList;
-		}
-	</script>
 </body>
 </html>
