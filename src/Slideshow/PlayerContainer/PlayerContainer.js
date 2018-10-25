@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 
-import fetchAssets from '../fetchAssets'
-
 import VimeoPlayer from '../VimeoPlayer/VimeoPlayer'
 import CoverImage from '../CoverImage/CoverImage'
+
+let fetchAssets;
+
+if (process.env.NODE_ENV === 'production') {
+  fetchAssets = require('../fetchAssets.js').default;
+} else {
+  fetchAssets = require('../fetchAssets.js').dummyFetchAssets;
+}
 
 class PlayerContainer extends Component {
   constructor (props) {

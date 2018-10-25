@@ -14,19 +14,21 @@ export default function fetchAssets() {
         if(response.success === "true") {
           resolve(reshapeData(response));
         } else {
-          resolve(dummyFetchAssets(new Error('Response received with success: false.')));
+          resolve(syncDummyData());
         }
       }
     };
     request.send();
-  }).then(response => response, dummyFetchAssets);
+  }).then(response => response, syncDummyData);
 }
 
-function dummyFetchAssets (error) {
-  // Fallback on the dummy data. It's small enough to be worth including.
-  console.log('Slideshow data request failed. Falling back on dummy data!', error);
-  const data = window.slideshow_data || dummyData;
-  return reshapeData(data);
+export function dummyFetchAssets (error) {
+  return Promise.resolve(syncDummyData());
+}
+
+function syncDummyData() {
+  console.log("Fetching dummy data");
+  return reshapeData(dummyData);
 }
 
 function reshapeData (response) {

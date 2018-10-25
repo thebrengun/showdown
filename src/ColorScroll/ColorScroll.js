@@ -17,6 +17,12 @@ class ColorScroll extends PureComponent {
 	};
 
 	render() {
+		/*
+			In the header.php a <noscript> tag containing an empty div with 
+			the class "ColorScroll" is rendered so that the background image  
+			will be shown regardless of javascript being enabled. If you need 
+			to change this className attribute, please also change it there! 
+		*/
 		return (
 			<div 
 				className="ColorScroll" 
