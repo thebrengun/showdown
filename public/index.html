@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="color-scroll"></div>
-  <div id="slideshow-root"></div>
+  <div id="slideshow"></div>
 	<div id="site-wrapper" class="site-wrapper">
 		<header>
 			<div class="header">
@@ -131,29 +131,7 @@
 	</div>
 
 	<script type="text/javascript">
-		document.addEventListener('scroll', handleScroll);
-    document.addEventListener('touchstart', handleDetectedMobile);
 		createMenu(document.getElementById('nav'), document.getElementById('nav-btn'));
-
-		function handleScroll(e) {
-			var colorScroll = document.getElementById('color-scroll');
-			var slideshow = document.getElementById('slideshow-root');
-			var scrollY = window.scrollY * 1.5;
-			colorScroll.style.backgroundPosition = '0px ' + scrollY + 'px';
-      if(!slideshow.style.top) {
-        console.log(slideshow.scrollTop);
-      }
-			slideshow.style.top = window.scrollY * -.5 + 'px';
-		}
-
-    function handleDetectedMobile(e) {
-      var siteWrapper = document.getElementById('site-wrapper');
-      var classList = getClassList(siteWrapper.className);
-      if(classList.indexOf('mobile') === -1) {
-        classList.push('mobile');
-      }
-      siteWrapper.className = classList.join(' ');
-    }
 
 		function createMenu(nav, toggleBtn) {
 			if(!nav || !toggleBtn) {

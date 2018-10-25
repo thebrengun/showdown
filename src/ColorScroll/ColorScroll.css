@@ -1,0 +1,13 @@
+.ColorScroll {
+	position: fixed;
+	width: 5px;
+	height: 100%;
+	overflow: hidden;
+	top: 0px;
+	right: 0px;
+	background-color: #F0F;
+	background-image: url('./assets/color1x4000.png');
+	background-position: 0px 0px;
+	background-repeat: repeat-y;
+	z-index: 10001;
+}
