@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App/App'
+import Slideshow from './Slideshow/Slideshow.js'
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<App />, document.getElementById('slideshow-root'))
+ReactDOM.render(<Slideshow />, document.getElementById('slideshow-root'))
 registerServiceWorker()
