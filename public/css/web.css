@@ -228,13 +228,18 @@ and (min-width: 768px) {
 
 @media screen 
 and (min-width: 992px) {
-	.site-wrapper {
+	.inner-header {
+		max-width: 1300px;
+		margin: 1em auto;
+	}
+
+	.main {
 		max-width: 1300px;
 		margin: 0 auto;
 	}
 
-	.main {
-		max-width: 1070px;
+	.main-inner {
+		max-width: 1030px;
 	}
 
 	.music-video-links {
