@@ -1,10 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import Slideshow from './Slideshow/Slideshow.js'
-import ColorScroll from './ColorScroll/ColorScroll.js'
-import Nav from './Nav/Nav.js'
-import registerServiceWorker from './registerServiceWorker'
+import React, { createElement } from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import store from './store.js';
+import { Provider } from 'react-redux';
+import Slideshow from './Slideshow/Slideshow.js';
+import ColorScroll from './ColorScroll/ColorScroll.js';
+import Nav from './Nav/Nav.js';
+import Popup from './Popup/Popup.js';
+import Tile from './Tile/Tile.js';
+import registerServiceWorker from './registerServiceWorker';
 
 /* 
 	Since the Slideshow is done in React, I've decided to make all Javscript 
@@ -19,4 +23,22 @@ import registerServiceWorker from './registerServiceWorker'
 ReactDOM.render(<Slideshow />, document.getElementById('slideshow'));
 ReactDOM.render(<ColorScroll />, document.getElementById('color-scroll'));
 ReactDOM.render(<Nav />, document.getElementById('nav-wrapper'));
-registerServiceWorker()
+
+document.querySelectorAll('.music-video-link').forEach(
+	container => 
+		ReactDOM.render(
+			createElement(
+				Provider, {store}, 
+				createElement(Tile, {postId: container.dataset.postid, postType: container.dataset.posttype})
+			), 
+			container
+		)
+);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Popup />
+	</Provider>, 
+	document.getElementById('showdown-popup')
+);
+registerServiceWorker();
