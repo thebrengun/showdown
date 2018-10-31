@@ -14,9 +14,9 @@ class Tile extends PureComponent {
 		return (
 			<React.Fragment>
 				<span className="music-video-link-thumbnail" onClick={handlePopupPost}>
-					<img src="assets/mv-placeholder.jpg" alt="Music Video" />
+					<img src={this.props.imageSrc} alt="Music Video" />
 				</span>
-				<span className="music-video-link-text" onClick={handlePopupPost}>Music Video</span>
+				<span className="music-video-link-text" onClick={handlePopupPost}>{this.props.linkText}</span>
 			</React.Fragment>
 		);
 	}

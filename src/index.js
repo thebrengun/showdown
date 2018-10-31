@@ -29,7 +29,12 @@ document.querySelectorAll('.music-video-link').forEach(
 		ReactDOM.render(
 			createElement(
 				Provider, {store}, 
-				createElement(Tile, {postId: container.dataset.postid, postType: container.dataset.posttype})
+				createElement(Tile, {
+					postId: container.dataset.postid, 
+					postType: container.dataset.posttype,
+					linkText: container.dataset.linktext,
+					imageSrc: container.dataset.imagesrc
+				})
 			), 
 			container
 		)

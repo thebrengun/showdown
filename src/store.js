@@ -22,8 +22,13 @@ export const createPopupPost = (postId, postType) => (dispatch, state) => {
 			// To Do: modify what's exposed to the API to only include the info 
 			// necessary to render a component
 
+			console.log(response);
+
 			const { title, acf } = response;
-			const { website, images, image, description, director_name, director_bio, director_image, director_website, vimeo_url, video_description, artist_name, artist_website } = acf;
+			const { 
+				website, images, image, description, director_name, director_bio, director_image, 
+				director_website, vimeo_url, video_description, artist_name, artist_website 
+			} = acf;
 			const relationship = acf[`festival_${postType}_relationship`];
 
 			let selectedImage;
