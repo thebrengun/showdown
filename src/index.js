@@ -20,7 +20,11 @@ import registerServiceWorker from './registerServiceWorker';
 	that can be implemented if necessary in the future.
  */
 
-ReactDOM.render(<Slideshow />, document.getElementById('slideshow'));
+const slideshowRoot = document.getElementById('slideshow');
+
+if(slideshowRoot) {
+	ReactDOM.render(<Slideshow />, slideshowRoot);
+}
 ReactDOM.render(<ColorScroll />, document.getElementById('color-scroll'));
 ReactDOM.render(<Nav />, document.getElementById('nav-wrapper'));
 
