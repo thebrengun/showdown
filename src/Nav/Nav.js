@@ -28,7 +28,7 @@ class Nav extends PureComponent {
 									<a href="/enter" className="menu-list-link">Enter</a>
 								</li>
 								<li className="menu-list-item">
-									<a href="/archive" className="menu-list-link">Past Festivals</a>
+									<a href="/past-festivals" className="menu-list-link">Past Festivals</a>
 								</li>
 								<li className="menu-list-item">
 									<a href="/#sponsors" className="menu-list-link">Sponsors</a>
