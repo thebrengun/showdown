@@ -2,7 +2,16 @@ import dummyData from './dummyData'
 
 export default function fetchAssets() {
   return new Promise(function(resolve, reject) {
-    const url = 'https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data';
+    // Use a relative URL in production because multiple domains are mapped
+    // Localhost port 3000 is an acceptable origin so in dev the full url 
+    // is okay to use when forcing live data over dummmy data.
+    let url;
+    if (process.env.NODE_ENV === 'production') {
+      url = 'wp-admin/admin-ajax.php?action=get_slideshow_data';
+    } else {
+      url = 'https://showdown.silversound.us/wp-admin/admin-ajax.php?action=get_slideshow_data';
+    }
+
     const request = new XMLHttpRequest();
     request.withCredentials = true;
 

@@ -123,7 +123,7 @@ p {
 	text-decoration: none;
 }
 
-.music-video-link-thumbnail, .entry-type-thumbnail {
+.music-video-link-thumbnail {
 	position: relative;
 	padding-top: 75.2%;
 	overflow: hidden;
@@ -133,12 +133,17 @@ p {
 	cursor: pointer;
 }
 
-.music-video-link-thumbnail img, .entry-type-thumbnail img {
+.music-video-link-thumbnail img {
 	position: absolute;
 	height: 150%;
 	min-width: 100%;
 	min-height: 100%;
 	margin-top: -35%;
+}
+
+.entry-type-thumbnail img {
+	max-width: 100%;
+	height: auto;
 }
 
 .music-video-link-text, .entry-type-link-text {
