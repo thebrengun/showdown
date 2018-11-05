@@ -30,6 +30,7 @@
 	margin: 0;
 	position: absolute;
 	outline: none;
+	cursor: pointer;
 }
 
 .popup-close-btn:hover {
@@ -82,6 +83,17 @@
 	margin: 2em;
 }
 
+.react-player-wrapper {
+	position: relative;
+	padding-top: 56.25%;
+}
+
+.react-player {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 @media screen 
 and (min-width: 768px) {
 	.Popup {
@@ -119,11 +131,12 @@ and (min-width: 768px) {
 
 	.popup-video-wrapper {
 		flex-basis: 65%;
+		max-width: 65%;
 	}
 
 	.popup-director {
 		flex-basis: 35%;
-		flex-shrink: 0;
+		flex-shrink: 1;
 		flex-grow: 1;
 	}
 }

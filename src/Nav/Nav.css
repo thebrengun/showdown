@@ -30,6 +30,7 @@
 	height: 1.5em;
 	margin: .5em;
 	float: right;
+	cursor: pointer;
 }
 
 .nav.closed .nav-btn {

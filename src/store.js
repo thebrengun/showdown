@@ -18,41 +18,35 @@ export const createPopupPost = (postId, postType) => (dispatch, state) => {
 	dispatch(createPopupRequest());
 	getPost({postId, postType, forceLive: true}).then(
 		(response) => {
-			// To Do: move to a data reshaping function, maybe in reducer
-			// To Do: modify what's exposed to the API to only include the info 
-			// necessary to render a component
-
-			console.log(response);
-
+			// To Do: move to a data reshaping function
 			const { title, acf } = response;
 			const { 
 				website, images, image, description, director_name, director_bio, director_image, 
 				director_website, vimeo_url, video_description, artist_name, artist_website 
 			} = acf;
-			const relationship = acf[`festival_${postType}_relationship`];
 
 			let selectedImage;
 			if(images && images[0] && images[0].sizes) {
-				selectedImage = images[0].sizes.large;
+				selectedImage = images[0].sizes['showdown-x-thumb'];
 			} else if(image && image.sizes) {
-				selectedImage = image.sizes.large;
+				selectedImage = image.sizes['showdown-x-thumb'];
 			} else if(image) {
 				selectedImage = image;
 			} else if(director_image && director_image.sizes) {
-				selectedImage = director_image.sizes.large;
+				selectedImage = director_image.sizes['showdown-x-thumb'];
 			}
-			dispatch(createPopupRequestDone());
 			dispatch(createPopupRequestData({
 				postType: postType,
 				title: title.rendered, 
-				website, image: selectedImage, description: {__html: description}, relationship, 
+				website, image: selectedImage, description: {__html: description},
 				director_name, director_bio: {__html: director_bio}, director_image, director_website, vimeo_url, 
 				video_description: {__html: video_description}, artist_name, artist_website
 			}));
+			dispatch(createPopupRequestDone());
 		}, 
 		() => {
-			dispatch(createPopupRequestDone());
 			dispatch(createPopupRequestData());
+			dispatch(createPopupRequestDone());
 		}
 	);
 };
@@ -61,6 +55,8 @@ const defaultState = {
 	popupHidden: true,
 	popupRequest: false
 };
+
+// To Do: Split store into separate pieces. Getting confusing in here.
 
 function store(state = defaultState, action) {
 	switch(action.type) {

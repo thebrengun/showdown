@@ -130,6 +130,7 @@ p {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
 }
 
 .music-video-link-thumbnail img, .entry-type-thumbnail img {
@@ -141,6 +142,7 @@ p {
 }
 
 .music-video-link-text, .entry-type-link-text {
+	cursor: pointer;
 	display: block;
 	color: #FF00FF;
 	margin: 1em 0 2em 0;

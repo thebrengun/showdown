@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Popup.css';
 import { createPopupHide } from '../store.js';
 import ReactPlayer from 'react-player';
 import loadImg from './assets/loader-animated.gif';
 
-class Popup extends PureComponent {
+class Popup extends Component {
 	renderRequesting = () => {
 		return (
 			<InfoPopup>
@@ -62,21 +62,21 @@ class Popup extends PureComponent {
 	}
 }
 
-class InfoPopup extends PureComponent {
+class InfoPopup extends Component {
 	render() {
 		return (
 			<div className="popup-inner">
 				<div className="popup-loading-image">
-					<img src={loadImg} />
+					<img src={loadImg} alt="Monster With A Guitar Rolls His Eyes" />
 				</div>
 			</div>
 		);
 	}
 }
 
-class ArtistPopup extends PureComponent {
+class ArtistPopup extends Component {
 	render() {
-		const { title, website, image, description, relationship } = this.props.data;
+		const { title, website, image, description } = this.props.data;
 		return (
 			<div className="popup-inner">
 				<div className="popup-image-wrapper">
@@ -85,57 +85,58 @@ class ArtistPopup extends PureComponent {
 					</div>
 				</div>
 				<div className="popup-padding">
-					<h2>{title}</h2>
+					<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
 					<div className="popup-description" dangerouslySetInnerHTML={description}></div>
-					{website && <a href={website}>{`Visit ${title}`}</a>}
+					{website && <ExternalLink url={website}>{`Visit ${title}`}</ExternalLink>}
 				</div>
-				{relationship.map(
-					({post_title}, i) => 
-						<div className="popup-padding popup-festival" key={'festival-artist-relationship-' + i}>
-							<h2>{post_title}</h2>
-							<span>Grand Prize Winner</span>
-						</div>
-				)}
 			</div>
 		);
 	}
 }
 
-class VideoPopup extends PureComponent {
+class VideoPopup extends Component {
 	render() {
 		const { 
-			title, website, image, description, relationship, director_name, director_bio, 
-			director_image, director_website, vimeo_url, video_description, artist_name, 
-			artist_website 
+			title, image, director_name, director_bio, director_website, vimeo_url, video_description, 
+			artist_name, artist_website 
 		} = this.props.data;
+		const vimeo_path = vimeo_url.split('/');
+		const vimeo_id = vimeo_path[vimeo_path.length - 1];
 		return (
 			<div className="popup-inner popup-video-inner">
 				<div className="popup-video-wrapper">
-					<ReactPlayer url={vimeo_url} width="100%" />
+					<div className="react-player-wrapper">
+						<ReactPlayer 
+							url={`https://vimeo.com/${vimeo_id}`} 
+							className="react-player" 
+							width="100%" 
+							height="100%" 
+						/>
+					</div>
 					<div className="popup-padding">
-						<h2>{title}</h2>
-						<h3>{artist_name}</h3>
+						<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
+						<h3 dangerouslySetInnerHTML={{__html: artist_name}}></h3>
 						<div className="popup-description" dangerouslySetInnerHTML={video_description}></div>
-						{artist_website && <a href={artist_website}>Visit {artist_name}</a>}
+						{artist_website && <ExternalLink url={artist_website}>Visit {artist_name}</ExternalLink>}
 					</div>
 				</div>
 				<div className="popup-director popup-padding">
-					<h2>{director_name}</h2>
+					<h2 dangerouslySetInnerHTML={{__html: director_name}}></h2>
 					<h3>Director</h3>
 					<div className="popup-image">
-						<img src={image} />
+						{image && <img src={image} alt={director_name} />}
 					</div>
 					<div className="popup-description" dangerouslySetInnerHTML={director_bio}></div>
-					{director_website && <a href={director_website}>{`Visit ${director_name}`}</a>}
+					{director_website && <ExternalLink url={director_website}>{`Visit ${director_name}`}</ExternalLink>}
 				</div>
 			</div>
 		);
 	}
 }
 
-class SponsorJudgePopup extends PureComponent {
+class SponsorJudgePopup extends Component {
 	render() {
-		const { title, website, image, description, relationship } = this.props.data;
+		const { title, website, image, description } = this.props.data;
 		return (
 			<div className="popup-inner">
 				<div className="popup-image-wrapper">
@@ -144,13 +145,24 @@ class SponsorJudgePopup extends PureComponent {
 					</div>
 				</div>
 				<div className="popup-padding">
-					<h2>{title}</h2>
+					<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
 					<div className="popup-description" dangerouslySetInnerHTML={description}></div>
-					{website && <a href={website}>{`Visit ${title}`}</a>}
+					{website && <ExternalLink url={website}>{`Visit ${title}`}</ExternalLink>}
 				</div>
 			</div>
 		);
 	}
+}
+
+function ExternalLink({url, children}) {
+	return <a href={formatLink(url)} target="_blank" rel="noopener">{children}</a>;
+}
+
+function formatLink(url) {
+	if(url.indexOf('//') > -1) {
+		return url;
+	}
+	return '//' + url;
 }
 
 const mapStateToProps = ({popupHidden: hidden, popupRequest: request, popupData: data}) => ({hidden, request, data});
