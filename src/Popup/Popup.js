@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Popup.css';
 import { createPopupHide } from '../store.js';
-import ReactPlayer from 'react-player';
 import loadImg from './assets/loader-animated.gif';
 
 class Popup extends Component {
@@ -105,17 +104,22 @@ class VideoPopup extends Component {
 		return (
 			<div className="popup-inner popup-video-inner">
 				<div className="popup-video-wrapper">
-					<div className="react-player-wrapper">
-						<ReactPlayer 
-							url={`https://vimeo.com/${vimeo_id}`} 
-							className="react-player" 
-							width="100%" 
-							height="100%" 
-						/>
-					</div>
 					<div className="popup-padding">
 						<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
 						<h3 dangerouslySetInnerHTML={{__html: artist_name}}></h3>
+						<div className="react-player-wrapper">
+							<iframe 
+								id="vpup" 
+								title={title}
+								className="react-player"
+								wmode="opaque" 
+								seamless="seamless" 
+								allowfullscreen="" 
+								webkitallowfullscreen="" 
+								mozallowfullscreen="" 
+								src={`https://player.vimeo.com/video/${vimeo_id}?title=0&byline=0&portrait=0&color=ffffff&autoplay=1&api=1&loop=0&player_id=vpup`}>
+							</iframe>
+						</div>
 						<div className="popup-description" dangerouslySetInnerHTML={video_description}></div>
 						{artist_website && <ExternalLink url={artist_website}>Visit {artist_name}</ExternalLink>}
 					</div>

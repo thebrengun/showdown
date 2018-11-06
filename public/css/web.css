@@ -233,6 +233,12 @@ p.price .woocommerce-Price-amount.amount {
 .form-row label {
 	flex-shrink: 0;
 	margin-right: 1em;
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	/*padding: .5em;*/
 }
 
 .form-row input, .form-row select, .form-row textarea, .quantity input {
@@ -244,13 +250,15 @@ p.price .woocommerce-Price-amount.amount {
 	font-size: 1em;
 	border: 0;
 	outline: none;
+	/*padding: .5em;
+	background: #333333;*/
 }
 
-.form-row.focused {
+.focused {
 	border-bottom: solid 2px #ff00ff;
 }
 
-.form-row.focused label {
+.focused label {
 	display: none;
 }
 
