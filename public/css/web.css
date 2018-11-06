@@ -30,6 +30,33 @@ p {
 	z-index: 9999;
 }
 
+.home-header {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: center;
+	color: #ff00ff;
+	flex-wrap: wrap;
+	margin: 1em 1.3125em 1em 1em;
+}
+
+.home-header-info {
+	flex-shrink: 1;
+	font-size: .75em;
+	flex-basis: 50%;
+	display: flex;
+	justify-content: center;
+}
+
+.home-header-logo-wrapper {
+	order: 1;
+}
+
+.home-header-logo {
+	width: 500px;
+	max-width: 100%;
+}
+
 .header {
 	background: rgba(0, 0, 0, .7);
 	position: fixed;
@@ -88,7 +115,7 @@ p {
 }
 
 .main {
-	margin-top: 0;
+	margin-top: 3.5em;
 }
 
 .main-inner {
@@ -190,12 +217,17 @@ p.price .woocommerce-Price-amount.amount {
 	display: block;
 }
 
+.product-add-on-music-video-password {
+	min-height: 4em;
+}
+
 .form-row {
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: flex-start;
 	flex-wrap: wrap;
+	border-bottom: solid 2px #000000;
 }
 
 .form-row label {
@@ -205,12 +237,21 @@ p.price .woocommerce-Price-amount.amount {
 
 .form-row input, .form-row select, .form-row textarea, .quantity input {
 	flex-grow: 1;
+	flex-shrink: 1;
 	color: #ffffff;
 	background: #000000;
 	font-family: 'UniversLTPro-65Bold', sans-serif;
 	font-size: 1em;
 	border: 0;
 	outline: none;
+}
+
+.form-row.focused {
+	border-bottom: solid 2px #ff00ff;
+}
+
+.form-row.focused label {
+	display: none;
 }
 
 .chars_remaining {
@@ -271,11 +312,7 @@ and (min-device-width: 575px) {
 @media screen 
 and (min-width: 768px) {
 	.header {
-		position: absolute;
-	}
-
-	.main {
-		margin-top: 3.5em;
+		/*position: absolute;*/
 	}
 
 	.hide-desktop {
@@ -362,8 +399,10 @@ and (min-width: 768px) {
 
 	h3.addon-name {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: flex-start;
+		padding-top: .5em;
+		line-height: 1.4em;
 	}
 
 	.cart {

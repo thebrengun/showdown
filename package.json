@@ -5,6 +5,7 @@
   "homepage": "https://showdown.silversound.us/wp-content/themes/showdown2018",
   "dependencies": {
     "axios": "^0.18.0",
+    "classlist-polyfill": "^1.2.0",
     "lodash": "^4.17.10",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

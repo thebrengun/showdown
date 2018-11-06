@@ -8,6 +8,7 @@ import ColorScroll from './ColorScroll/ColorScroll.js';
 import Nav from './Nav/Nav.js';
 import Popup from './Popup/Popup.js';
 import Tile from './Tile/Tile.js';
+import enhanceEntryForms from './enhanceEntryForms.js';
 import registerServiceWorker from './registerServiceWorker';
 
 /* 
@@ -50,4 +51,7 @@ ReactDOM.render(
 	</Provider>, 
 	document.getElementById('showdown-popup')
 );
+
+enhanceEntryForms();
+
 registerServiceWorker();
