@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Slideshow.css';
 import PlayerContainer from './PlayerContainer/PlayerContainer';
+import largeLogo from './assets/showdown-logo-home.png';
 
 class Slideshow extends Component {
 	state = {offset: 0};
@@ -25,6 +26,17 @@ class Slideshow extends Component {
 					top: `-${this.state.offset}px`
 				}}
 			>
+				<div class="home-header">
+					<div class="home-header-logo-wrapper">
+						<img src={largeLogo} alt="Showdown X" class="home-header-logo" />
+					</div>
+					<div class="home-header-event-info-wrapper">
+						<div class="home-header-event-info">
+							<span>January 16 2019</span>
+							<span>Brooklyn Bowl</span>
+						</div>
+					</div>
+				</div>
 				<PlayerContainer />
 			</div>
 		)

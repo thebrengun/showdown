@@ -19,13 +19,13 @@ class Nav extends PureComponent {
 						<div className="menu">
 							<ul className="menu-list">
 								<li className="menu-list-item">
-									<a href="/#lineup" className="menu-list-link">Lineup</a>
+									<a href="/#festival" className="menu-list-link">Festival</a>
 								</li>
 								<li className="menu-list-item">
-									<a href="/#collaborations" className="menu-list-link">Collaborations</a>
+									<a href="/#winning-collaborations" className="menu-list-link">Winning Collaborations</a>
 								</li>
 								<li className="menu-list-item">
-									<a href="/enter" className="menu-list-link">Enter</a>
+									<a href="/submit" className="menu-list-link">Submit</a>
 								</li>
 								<li className="menu-list-item">
 									<a href="/past-festivals" className="menu-list-link">Past Festivals</a>
@@ -34,7 +34,7 @@ class Nav extends PureComponent {
 									<a href="/#sponsors" className="menu-list-link">Sponsors</a>
 								</li>
 								<li className="menu-list-item">
-									<a href="/tickets" className="menu-list-link tickets-link">Tickets</a>
+									<a href="https://www.brooklynbowl.com/event/1785560-silver-sound-showdown-music-brooklyn/" target="_blank" rel="noopener" class="menu-list-link tickets-link">Tickets</a>
 								</li>
 							</ul>
 						</div>
