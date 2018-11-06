@@ -241,6 +241,10 @@ p.price .woocommerce-Price-amount.amount {
 	/*padding: .5em;*/
 }
 
+.form-row label.u-hidden {
+	display: none;
+}
+
 .form-row input, .form-row select, .form-row textarea, .quantity input {
 	flex-grow: 1;
 	flex-shrink: 1;

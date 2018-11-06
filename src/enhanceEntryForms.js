@@ -23,6 +23,14 @@ function enhanceEntryForms() {
 
 					field.addEventListener('focusout', function() {
 						form_row.classList.remove('focused');
+						console.log('handle change');
+						const val = field.value.trim();
+						console.log(val);
+						if(val.length && label) {
+							label.classList.add('u-hidden');
+						} else if(label) {
+							label.classList.remove('u-hidden');
+						}
 					});
 				}
 			}
