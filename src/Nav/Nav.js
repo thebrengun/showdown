@@ -34,7 +34,7 @@ class Nav extends PureComponent {
 									<a href="/#sponsors" className="menu-list-link">Sponsors</a>
 								</li>
 								<li className="menu-list-item">
-									<a href="https://www.brooklynbowl.com/event/1785560-silver-sound-showdown-music-brooklyn/" target="_blank" rel="noopener" class="menu-list-link tickets-link">Tickets</a>
+									<a href="https://www.brooklynbowl.com/event/1785560-silver-sound-showdown-music-brooklyn/" target="_blank" rel="noopener noreferrer" className="menu-list-link tickets-link">Tickets</a>
 								</li>
 							</ul>
 						</div>

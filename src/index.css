@@ -54,6 +54,7 @@ p {
 .logo img {
 	height: 1.5em;
 	display: block;
+	max-width: 95%;
 }
 
 .ns-nav-container {
@@ -218,7 +219,6 @@ p.price .woocommerce-Price-amount.amount {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	/*padding: .5em;*/
 }
 
 .form-row label.u-hidden {
@@ -234,8 +234,6 @@ p.price .woocommerce-Price-amount.amount {
 	font-size: 1em;
 	border: 0;
 	outline: none;
-	/*padding: .5em;
-	background: #333333;*/
 }
 
 .focused {
@@ -251,7 +249,7 @@ p.price .woocommerce-Price-amount.amount {
 	flex-shrink: 0;
 }
 
-.single_add_to_cart_button {
+.single_add_to_cart_button, .actions button.button, .checkout-button {
 	background: #FF00FF;
 	color: #ffffff;
 	font-family: 'UniversLTPro-65Bold', sans-serif;
@@ -259,8 +257,13 @@ p.price .woocommerce-Price-amount.amount {
 	padding: .5em;
 	border: 0;
 	display: block;
-	width: 100%;
 	margin-top: 1em;
+	text-align: center;
+	text-decoration: none;
+}
+
+.wcppec-checkout-buttons__separator {
+	text-align: center;
 }
 
 .woocommerce-error, .woocommerce-message {
@@ -284,6 +287,91 @@ p.price .woocommerce-Price-amount.amount {
 }
 
 #wpadminbar { display:none !important;}
+
+/* WooCommerce Cart */
+
+.product-thumbnail {
+	display: none;
+}
+
+.shop_table, .shop_table tr {
+	width: 100%;
+	max-width: 100%;
+}
+
+.shop_table td {
+	padding: .5em 0;
+	vertical-align: top;
+}
+
+th {
+	color: #00FF00;
+}
+
+.shop_table th {
+	max-width: 15%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.product-remove {
+	padding: 0;
+	position: absolute;
+}
+
+.product-quantity, .product-price, .product-subtotal {
+	width: 1%;
+	text-align: center;
+}
+
+.remove {
+	background: red;
+	border: solid 1px red;
+	text-decoration: none;
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 1em;
+	height: 1em;
+	border-radius: .25em;
+	border: solid 1px #ff00ff #f00;
+}
+
+.product-name {
+	text-align: left;
+}
+
+.product-name a {
+	margin: 0 0 0 1.5em;
+	display: block;
+}
+
+dl.variation {
+}
+
+dl.variation dt {
+	color: #ff00ff;
+}
+
+dl.variation dd {
+	padding: 0;
+	margin: 0 0 1em 0;
+}
+
+.actions button.button {
+	background-color: #00ff00;
+	width: 100%;
+}
+
+.cart-subtotal, .order-total {
+	text-align: right;
+}
+
+.cart-subtotal th, .order-total th {
+	color: #ff00ff;
+}
 
 /* Progressive Enhancements */
 
@@ -384,9 +472,13 @@ and (min-width: 768px) {
 		grid-column-start: 2;
 	}
 
-	.single_add_to_cart_button {
-		display: inline-block;
+	.wcppec-checkout-buttons__separator {
 		width: 25%;
+	}
+
+	.single_add_to_cart_button, .shop_table .button, .checkout-button {
+		width: 25%;
+		max-width: 25%;
 	}
 
 	h3.addon-name {

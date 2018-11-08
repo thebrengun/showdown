@@ -26,12 +26,12 @@ class Slideshow extends Component {
 					top: `-${this.state.offset}px`
 				}}
 			>
-				<div class="home-header">
-					<div class="home-header-logo-wrapper">
-						<img src={largeLogo} alt="Showdown X" class="home-header-logo" />
+				<div className="home-header">
+					<div className="home-header-logo-wrapper">
+						<img src={largeLogo} alt="Showdown X" className="home-header-logo" />
 					</div>
-					<div class="home-header-event-info-wrapper">
-						<div class="home-header-event-info">
+					<div className="home-header-event-info-wrapper">
+						<div className="home-header-event-info">
 							<span>January 16 2019</span>
 							<span>Brooklyn Bowl</span>
 						</div>
