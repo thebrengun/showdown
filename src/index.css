@@ -167,7 +167,7 @@ p {
 }
 
 .u-hidden {
-	display: none;
+	display: none !important;
 }
 
 /* Woo Commerce Overrides */
@@ -241,7 +241,7 @@ p.price .woocommerce-Price-amount.amount {
 }
 
 .focused label {
-	display: none;
+	display: none !important;
 }
 
 .chars_remaining {
@@ -339,6 +339,36 @@ td.actions .button {
 .checkout-button.button.alt.wc-forward {
     background: #ff00ff;
     display: block;
+}
+
+/* Woo Commerce Checout */
+
+.form-row input.input-text::placeholder, .form-row textarea::placeholder {
+    opacity: 0;
+}
+
+.validate-state label {
+    position: static;
+}
+
+.select2-dropdown {
+    color: #000000;
+}
+
+#billing_address_2_field .screen-reader-text {
+    clip:unset;
+    height: auto;
+    overflow: auto;
+    width: auto;
+    word-wrap: unset!important;
+}
+
+td.product-total {
+    vertical-align: top!important;
+}
+
+.shop_table.woocommerce-checkout-review-order-table dl.variation {
+	margin-left: 0;
 }
 
 /* Progressive Enhancements */

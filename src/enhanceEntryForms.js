@@ -42,10 +42,8 @@ function enhanceEntryForms() {
 				hideIf(label, fieldHasValue(field));
 
 				addListener(field, 'focusin', (e) => focusInFormRow(formRow));
-				addListener(field, 'focusout', (e) => {
-					focusOutFormRow(formRow);
-					hideIf(label, fieldHasValue(field));
-				});
+				addListener(field, 'focusout', (e) => focusOutFormRow(formRow));
+				addListener(field, 'change', (e) => hideIf(label, fieldHasValue(field)));
 			}
 		);
 	}
