@@ -37,10 +37,10 @@ function enhanceEntryForms() {
 				const textarea = formRow.getElementsByTagName('textarea')[0];
 				const field = input || textarea;
 
-				addListener(label, 'click', (e) => focusEl(field));
-
+				// absolutely position since not wrapping radio or checkbox
+				addClass(label, 'placeholder');
 				hideIf(label, fieldHasValue(field));
-
+				addListener(label, 'click', (e) => focusEl(field));
 				addListener(field, 'focusin', (e) => focusInFormRow(formRow));
 				addListener(field, 'focusout', (e) => focusOutFormRow(formRow));
 				addListener(field, 'change', (e) => hideIf(label, fieldHasValue(field)));
