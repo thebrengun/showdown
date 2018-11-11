@@ -1,7 +1,9 @@
 .player-controls {
-  flex-basis: 33%;
+  padding: .5em;
+  border-radius: .25em;
   display: flex;
   justify-content: center;
+  background: rgba(0, 0, 0, .5);
 }
 
 .PlayButton,

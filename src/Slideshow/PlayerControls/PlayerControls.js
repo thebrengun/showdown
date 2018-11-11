@@ -16,10 +16,12 @@ export default ({
 }) => {
   return (
     <div className={'player-controls'}>
-      <PrevButton
-        isEnabled={hasPrevious}
-        onClick={previousVideo}
-      />
+      {
+        // <PrevButton
+        //   isEnabled={hasPrevious}
+        //   onClick={previousVideo}
+        // />
+      }
       <PlayToggleButton
         togglePlay={togglePlay}
         isPlaying={isPlaying}
@@ -29,10 +31,12 @@ export default ({
         isMuted={isMuted}
         onMuteChange={toggleMute}
       />
-      <NextButton
-        isEnabled={hasNext}
-        onClick={nextVideo}
-      />
+      {
+      // <NextButton
+      //   isEnabled={hasNext}
+      //   onClick={nextVideo}
+      // />
+      }
     </div>
   )
 }

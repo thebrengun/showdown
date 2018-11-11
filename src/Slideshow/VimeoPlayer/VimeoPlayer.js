@@ -18,10 +18,16 @@ export default class VimeoPlayer extends Component {
     video: {
       width: null,
       height: null,
-      aspectRatio: null
+      aspectRatio: 1.78
     },
     volume: 0,
-    playing: true
+    playing: true,
+    container: {
+      width: null,
+      height: null,
+      margin: {top: null, left: null}
+    },
+    showControls: false
   }
 
   attachEventListeners = () => {
@@ -37,7 +43,7 @@ export default class VimeoPlayer extends Component {
   }
 
   onResize = event => {
-    this.fetchVideoDimensions()
+    this.fetchVideoDimensions();
   }
 
   handleKeyPress = event => {
@@ -68,29 +74,48 @@ export default class VimeoPlayer extends Component {
             width: response.data.width,
             height: response.data.height
           }
-        }))
+        }));
+        this.playerDimensions();
       })
       .catch(anOopsy => console.error(anOopsy)));
     this.cancelablePromises.push(cancelablePromise);
   }
 
   playerDimensions = () => {
-    return window.innerWidth / window.innerHeight < this.state.video.aspectRatio
-      ? { // the player is relatively wider
-        width: `${window.innerHeight * this.state.video.aspectRatio}px`,
-        height: `${window.innerHeight}px`,
-        margin: `0px ${((window.innerHeight * this.state.video.aspectRatio) - window.innerWidth) / -2}px`
-      }
-      : { // the player is relatively narrower
-        width: `${window.innerWidth}px`,
-        height: `${window.innerWidth / this.state.video.aspectRatio}px`,
-        margin: `${((window.innerWidth / this.state.video.aspectRatio) - window.innerHeight) / -2}px 0px`
-      }
+      this.setState(prevState => {
+        const { clientWidth:containerWidth, clientHeight:containerHeight } = this.showdownReactPlayerContainer;
+        const aspectRatio = prevState.video.aspectRatio;
+
+        const container = containerWidth / containerHeight < aspectRatio
+          ? { // the player is relatively wider
+            width: `${containerHeight * aspectRatio}px`,
+            height: `${containerHeight}px`,
+            margin: {top: '0px', left: ((containerHeight * aspectRatio) - containerWidth) / -4 + 'px'}
+          }
+          : { // the player is relatively narrower
+            width: `${containerWidth}px`,
+            height: `${containerWidth / aspectRatio}px`,
+            margin: {top: ((containerWidth / aspectRatio) - containerHeight) / -4 + 'px', left: '0px'}
+          };
+        return {container};
+      });
+  }
+
+  hideControls = () => {
+    if(this.state.showControls) {
+      this.setState({showControls: false});
+    }
+  }
+
+  showControls = () => {
+    if(!this.state.showControls) {
+      this.setState({showControls: true});
+    }
   }
 
   componentDidMount () {
-    this.attachEventListeners()
-    this.fetchVideoDimensions()
+    this.attachEventListeners();
+    this.fetchVideoDimensions();
   }
 
   componentWillUnmount () {
@@ -98,41 +123,45 @@ export default class VimeoPlayer extends Component {
   }
 
   render () {
-    const {width, height, margin} = this.playerDimensions()
+    const {width, height, margin} = this.state.container;
     return (
-      <div className={'containiest'}>
-        <div className={'showdown-react-player-container'}>
-          <div style={{margin}}>
+      <div className="containiest">
+        <div className="showdown-react-player-container" ref={(ref) => {this.showdownReactPlayerContainer = ref;}}>
+          <div>
             <ReactPlayer
-              className={'react-player'}
+              className="react-player"
               url={`https://vimeo.com/${this.props.currentVideo.vimeoId}`}
               width={width}
               height={height}
-              style={{ width, height }}
               volume={this.state.volume}
               playing={this.state.playing}
               onEnded={this.props.nextVideo}
-              onBuffer={_ => console.log('Desire is the root of all buffering', _)}
+              onBuffer={_ => console.log('Desire is the root of all buffering', _)} 
+              style={{position: 'absolute', width, height, top: margin.top, left: margin.left}}
             />
           </div>
         </div>
-        <div className={'controls-overlay'}>
+        <div className="menu-overlay">
           <Menu
             videos={this.props.videos}
             currentVideo={this.props.currentVideo}
             selectVideo={this.props.selectVideo}
           />
-          <PlayerControls
-            isPlaying={this.state.playing}
-            isMuted={!this.state.volume}
-            togglePlay={this.togglePlay}
-            toggleMute={this.toggleMute}
-            previousVideo={this.props.previousVideo}
-            nextVideo={this.props.nextVideo}
-            hasPrevious={this.props.hasPrevious}
-            hasNext={this.props.hasNext}
-          />
           <div className='placeholder' />
+        </div>
+        <div className="controls-overlay">
+          {this.state.showControls &&
+            <PlayerControls
+              isPlaying={this.state.playing}
+              isMuted={!this.state.volume}
+              togglePlay={this.togglePlay}
+              toggleMute={this.toggleMute}
+              previousVideo={this.props.previousVideo}
+              nextVideo={this.props.nextVideo}
+              hasPrevious={this.props.hasPrevious}
+              hasNext={this.props.hasNext}
+            />
+          }
         </div>
       </div>
     )

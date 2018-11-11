@@ -11,12 +11,20 @@ export default class Menu extends Component {
     }
   }
 
+  wrapMenu = () => {
+    const { videos, currentVideo, show } = this.props;
+    const currentVideoIndex = videos.reduce((acc, {title}, i) => title === currentVideo.title ? i : acc, -1);
+    const startFromCurrentVideo = videos.slice(currentVideoIndex, currentVideoIndex + show);
+    const len = startFromCurrentVideo.length;
+    return len === show ? startFromCurrentVideo : [...startFromCurrentVideo, ...videos.slice(0, Math.min(currentVideoIndex, show - len))];
+  };
+
   render () {
     if (!this.props.currentVideo) return <div style={{ color: 'white' }}>Loading...</div>
-    const titles = this.props.videos.map(video => video.title)
+    const titles = this.wrapMenu().map(({title}) => title);
     const menuItems = titles.map((title, index) => {
       const itemStyle = {
-        color: title === this.props.currentVideo.title ? 'rgb(252, 100, 217)' : 'white'
+        color: title === this.props.currentVideo.title ? '#ff00ff' : 'white'
       }
       return (
         <a
@@ -37,3 +45,8 @@ export default class Menu extends Component {
     )
   }
 }
+
+
+Menu.defaultProps = {
+  show: 3
+};

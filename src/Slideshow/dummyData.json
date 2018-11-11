@@ -2,6 +2,14 @@
   "dummyData": "true",
   "data": [
     {
+      "title": "Dots",
+      "type": "vimeo_video",
+      "vimeo_id": "156045585",
+      "width": "1280",
+      "height": "720",
+      "vimeo_image": "http://i.vimeocdn.com/video/156045585_640.jpg"
+    },
+    {
       "title": "SILVER SOUND SHOWDOWN CALL FOR ENTRIES",
       "type": "vimeo_video",
       "vimeo_id": "110497969",
