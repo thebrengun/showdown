@@ -17,28 +17,45 @@
 
 .nav.open {
 	background: #FF00FF;
+	border-radius: 0 .5em 0 0;
+}
+
+.header.with-slideshow .nav.open {
+	background: rgba(255, 0, 255, .9);
 }
 
 .nav-btn {
 	background: transparent url('./assets/nav-closed.svg') no-repeat 50% 50%;
-	margin: 0;
-	padding: 0;
 	font: 1em;
 	border: 0;
 	outline: 0;
-	width: 1.5em;
-	height: 1.5em;
-	margin: .5em;
+	width: 3em;
+	height: 3em;
+	padding: 0;
+	margin: 0;
 	float: right;
 	cursor: pointer;
+	border-radius: .5em;
 }
 
 .nav.closed .nav-btn {
-	background: url('./assets/nav-closed.svg') no-repeat 50% 50%;
+	background: transparent url('./assets/nav-closed.svg') no-repeat 50% 50%;
+}
+
+.header.with-slideshow .nav.closed .nav-btn {
+	background: rgba(0, 0, 0, .25) url('./assets/nav-closed.svg') no-repeat 50% 50%;
+	border-style: solid;
+	border-width: .1em;
+	border-color: #909090 #909090 #808080 #808080;
+}
+
+.header.with-slideshow .nav.closed .nav-btn:active, .header.with-slideshow .nav.closed .nav-btn:hover {
+	background: #ff00ff url('./assets/nav-closed.svg') no-repeat 50% 50%;
+	border-color: #ff99ff #ff99ff #990099 #990099;
 }
 
 .nav.open .nav-btn {
-	background: url('./assets/nav-open.svg') no-repeat 50% 50%;
+	background: transparent url('./assets/nav-open.svg') no-repeat 50% 50%;
 }
 
 .menu {
@@ -54,16 +71,11 @@
 }
 
 .menu-wrapper {
-	opacity: 0;
-	padding-top: -9em;
-	max-height: 0px;
-	transition: opacity .2s, max-height 1s, padding-top 1s;
+	
 }
 
 .nav.open .menu-wrapper {
-	max-height: 100vh;
-	padding-top: 0;
-	opacity: 1;
+
 }
 
 .menu-list {
@@ -78,6 +90,7 @@
 }
 
 .menu-list-link {
+	background: transparent;
 	display: block;
 	text-align: center;
 	padding: .5em .5em;
@@ -85,10 +98,11 @@
 	text-decoration: none;
 	line-height: 1em;
 	text-transform: capitalize;
+	transition: background .25s;
 }
 
 .menu-list-link:hover {
-	background: #00FF00;
+	background: #ffffff;
 }
 
 .tickets-link {
@@ -108,5 +122,9 @@ and (min-width: 992px) {
 and (min-width: 1200px) {
 	.nav-btn {
 		float: left;
+	}
+
+	.nav.open {
+		border-radius: .5em 0 0 0;
 	}
 }

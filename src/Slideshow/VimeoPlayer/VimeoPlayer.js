@@ -22,12 +22,13 @@ export default class VimeoPlayer extends Component {
     },
     volume: 0,
     playing: true,
+    showControls: 'play',
     container: {
       width: null,
       height: null,
       margin: {top: null, left: null}
     },
-    showControls: false
+    currentControlToggle: 0
   }
 
   attachEventListeners = () => {
@@ -56,11 +57,12 @@ export default class VimeoPlayer extends Component {
   }
 
   togglePlay = () => {
-    this.setState(prevState => ({ playing: !prevState.playing }))
+    this.setState(prevState => ({ playing: !prevState.playing }));
   }
 
   toggleMute = () => {
     this.setState(prevState => ({ volume: Number(!prevState.volume) }))
+    this.showControls('sound');
   }
 
   fetchVideoDimensions = () => {
@@ -101,17 +103,29 @@ export default class VimeoPlayer extends Component {
       });
   }
 
-  hideControls = () => {
-    if(this.state.showControls) {
-      this.setState({showControls: false});
+  componentDidUpdate(prevProps) {
+    if(prevProps.currentVideo && this.props.currentVideo && prevProps.currentVideo.vimeoId !== this.props.currentVideo.vimeoId) {
+      this.fetchVideoDimensions();
+      this.showControls('play');
     }
   }
 
-  showControls = () => {
-    if(!this.state.showControls) {
-      this.setState({showControls: true});
-    }
+  hideControls = () => {
+    window.clearTimeout(this.showControlsTimer);
+    this.setState({showControls: false});
   }
+
+  showControls = (controlsName, withTimeout = true) => {
+    window.clearTimeout(this.showControlsTimer);
+    this.setState({showControls: controlsName});
+    if(withTimeout) {
+      this.showControlsTimer = window.setTimeout(this.hideControls, 3500);
+    }
+  };
+
+  handlePlayChange = (e) => {
+    this.showControls('play');
+  };
 
   componentDidMount () {
     this.attachEventListeners();
@@ -119,7 +133,8 @@ export default class VimeoPlayer extends Component {
   }
 
   componentWillUnmount () {
-    this.detachEventListeners()
+    this.detachEventListeners();
+    window.clearTimeout(this.showControlsTimer);
   }
 
   render () {
@@ -129,39 +144,42 @@ export default class VimeoPlayer extends Component {
         <div className="showdown-react-player-container" ref={(ref) => {this.showdownReactPlayerContainer = ref;}}>
           <div>
             <ReactPlayer
-              className="react-player"
               url={`https://vimeo.com/${this.props.currentVideo.vimeoId}`}
               width={width}
               height={height}
               volume={this.state.volume}
               playing={this.state.playing}
+              onReady={this.props.handlePlayChange}
+              onBuffer={this.props.handlePlayChange}
               onEnded={this.props.nextVideo}
+              onPause={this.handlePlayChange}
+              onPlay={this.handlePlayChange} 
+              onStart={this.handlePlayChange}
               onBuffer={_ => console.log('Desire is the root of all buffering', _)} 
+              className="react-player"
               style={{position: 'absolute', width, height, top: margin.top, left: margin.left}}
             />
           </div>
         </div>
-        <div className="menu-overlay">
+        <div className="menu-overlay" onClick={(e) => {
+          const { currentControlToggle } = this.state;
+          const controlToggleList = [this.togglePlay, this.togglePlay, this.toggleMute];
+          controlToggleList[currentControlToggle]();
+          const nextControlToggle = currentControlToggle + 1;
+          this.setState({currentControlToggle: nextControlToggle < controlToggleList.length ? nextControlToggle : 0});
+        }}>
           <Menu
             videos={this.props.videos}
             currentVideo={this.props.currentVideo}
             selectVideo={this.props.selectVideo}
           />
-          <div className='placeholder' />
         </div>
         <div className="controls-overlay">
-          {this.state.showControls &&
-            <PlayerControls
-              isPlaying={this.state.playing}
-              isMuted={!this.state.volume}
-              togglePlay={this.togglePlay}
-              toggleMute={this.toggleMute}
-              previousVideo={this.props.previousVideo}
-              nextVideo={this.props.nextVideo}
-              hasPrevious={this.props.hasPrevious}
-              hasNext={this.props.hasNext}
-            />
-          }
+          <PlayerControls
+            isPlaying={this.state.playing}
+            isMuted={!this.state.volume} 
+            showControls={this.state.showControls}
+          />
         </div>
       </div>
     )

@@ -2,20 +2,20 @@
   "dummyData": "true",
   "data": [
     {
-      "title": "Dots",
+      "title": "Dog in the Night - Side Saddle",
       "type": "vimeo_video",
-      "vimeo_id": "156045585",
+      "vimeo_id": "201020459",
       "width": "1280",
       "height": "720",
-      "vimeo_image": "http://i.vimeocdn.com/video/156045585_640.jpg"
+      "vimeo_image": "http://i.vimeocdn.com/video/201020459_640.jpg"
     },
     {
-      "title": "SILVER SOUND SHOWDOWN CALL FOR ENTRIES",
+      "title": "Vessels - Deb Oh & the Cavaliers",
       "type": "vimeo_video",
-      "vimeo_id": "110497969",
+      "vimeo_id": "85876630",
       "width": "1280",
       "height": "720",
-      "vimeo_image": "http://i.vimeocdn.com/video/494780643_640.jpg"
+      "vimeo_image": "http://i.vimeocdn.com/video/713714517_640.jpg"
     },
     {
       "title": "download_1",
@@ -26,20 +26,12 @@
       "height": 664
     },
     {
-      "title": "Flying Cat - Haagen dazs",
+      "title": "Paper Heart - Blood & Glass",
       "type": "vimeo_video",
-      "vimeo_id": "126494659",
-      "width": "640",
-      "height": "360",
-      "vimeo_image": "http://i.vimeocdn.com/video/516955213_640.jpg"
-    },
-    {
-      "title": "Vessels - Deb Oh & the Cavaliers",
-      "type": "vimeo_video",
-      "vimeo_id": "85876630",
+      "vimeo_id": "132463511",
       "width": "1280",
       "height": "720",
-      "vimeo_image": "http://i.vimeocdn.com/video/713714517_640.jpg"
+      "vimeo_image": "http://i.vimeocdn.com/video/201020459_640.jpg"
     }
   ]
 }

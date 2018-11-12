@@ -6,9 +6,9 @@
   max-height: 100vh;
   max-width: 100vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
-  bottom: 0;
+  top: 0;
   left: 0;
   
   /* testing conditions */
@@ -29,6 +29,21 @@
   left: 0;
   /* testing conditions */
   /* display: none; */
+}
+
+.player-controls {
+  background: #333333;
+  padding: 1.25em;
+  border-radius: .5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 1;
+}
+
+.player-controls.hidden {
+  opacity: 0;
+  transition: 1s opacity;
 }
 
 .controls-footer {
@@ -60,9 +75,4 @@
   .showdown-react-player-container {
     height: 100vh;
   }
-}
-
-.placeholder {
-  flex-basis: 33%;
-  color: white;
 }

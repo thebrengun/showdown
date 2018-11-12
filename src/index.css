@@ -37,6 +37,15 @@ p {
 	width: 100%;
 	top: 0;
 	left: 0;
+	transition: .5s background-color;
+}
+
+.header.with-slideshow {
+	background: rgba(0, 0, 0, 0);
+}
+
+.header.with-slideshow .logo img {
+	opacity: 0;
 }
 
 .inner-header {
@@ -55,6 +64,8 @@ p {
 	height: 1.5em;
 	display: block;
 	max-width: 95%;
+	opacity: 1;
+	transition: .5s opacity;
 }
 
 .ns-nav-container {
@@ -344,7 +355,7 @@ td.actions .button {
     display: block;
 }
 
-/* Woo Commerce Checout */
+/* Woo Commerce Checkout */
 
 .form-row input.input-text::placeholder, .form-row textarea::placeholder {
     opacity: 0;

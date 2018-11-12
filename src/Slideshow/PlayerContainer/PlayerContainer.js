@@ -63,7 +63,6 @@ class PlayerContainer extends Component {
   }
 
   previousVideo = event => {
-    // event.persist()
     this.setState(prevState => {
       const currentVideoIndex = this.currentVideoIndex(prevState)
       return { currentVideo: prevState.videos[currentVideoIndex - 1] }
@@ -71,7 +70,6 @@ class PlayerContainer extends Component {
   }
 
   nextVideo = event => {
-    // event.persist()
     this.setState(
       prevState => {
         const currentVideoIndex = this.currentVideoIndex(prevState);
@@ -90,6 +88,7 @@ class PlayerContainer extends Component {
       prevState => ({ currentVideo: prevState.videos.find(byTitle) }),
       this.handleVideoChange
     )
+    event.stopPropagation();
   }
 
   fetchAssets = () => {
@@ -117,10 +116,8 @@ class PlayerContainer extends Component {
 
   showImage = () => {
     window.clearInterval(this.timeoutId)
-    this.setState(prevState => ({
-      isImageShown: true,
-      timeoutId: window.setTimeout(this.hideImage, this.timeoutDuration)
-    }))
+    this.setState({isImageShown: true})
+    this.timeoutId = window.setTimeout(this.hideImage, this.timeoutDuration);
   }
 
   componentWillUnmount = () => {
@@ -134,17 +131,23 @@ class PlayerContainer extends Component {
 
   render () {
     const { currentVideo, videos, isImageShown } = this.state
-    return currentVideo && !isImageShown
-      ? <VimeoPlayer
-        currentVideo={currentVideo}
-        videos={videos}
-        selectVideo={this.selectVideo}
-        previousVideo={this.previousVideo}
-        nextVideo={this.nextVideo}
-        hasPrevious={this.state.hasPrevious}
-        hasNext={this.state.hasNext}
-      />
-      : <CoverImage />
+    return (
+      [
+        currentVideo ? 
+          <VimeoPlayer
+            currentVideo={currentVideo}
+            videos={videos}
+            selectVideo={this.selectVideo}
+            previousVideo={this.previousVideo}
+            nextVideo={this.nextVideo}
+            hasPrevious={this.state.hasPrevious}
+            hasNext={this.state.hasNext} 
+            isImageShown={isImageShown}
+          /> : null, 
+        isImageShown ? 
+          <CoverImage /> : null
+      ]
+    );
   }
 }
 

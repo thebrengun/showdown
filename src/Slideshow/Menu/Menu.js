@@ -23,15 +23,11 @@ export default class Menu extends Component {
     if (!this.props.currentVideo) return <div style={{ color: 'white' }}>Loading...</div>
     const titles = this.wrapMenu().map(({title}) => title);
     const menuItems = titles.map((title, index) => {
-      const itemStyle = {
-        color: title === this.props.currentVideo.title ? '#ff00ff' : 'white'
-      }
       return (
         <a
           key={index}
           onClick={this.props.selectVideo}
-          className={'menu-item'}
-          style={itemStyle}
+          className={['menu-item', title === this.props.currentVideo.title ? 'selected' : ''].join(' ')}
         >
           {title}
         </a>
@@ -39,8 +35,15 @@ export default class Menu extends Component {
     })
 
     return (
-      <div className={'menu-container'} >
-        {menuItems}
+      <div className="menu-container">
+        <div className="menu-container-row">
+          <span className="menu-container-now-next now">Now:</span>
+          <span>{menuItems[0]}</span>
+        </div>
+        <div className="menu-container-row">
+          <span className="menu-container-now-next">Next:</span>
+          <span>{menuItems.slice(1)}</span>
+        </div>
       </div>
     )
   }
