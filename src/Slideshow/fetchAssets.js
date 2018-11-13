@@ -1,6 +1,12 @@
 import dummyData from './dummyData'
 
 export default function fetchAssets() {
+  // Admin Ajax is not working for non signed in users. Until fixed, we'll resolve from 
+  // a global variable put in a tag via PHP.
+  if(window.slideshow_data) {
+    return Promise.resolve(reshapeData(window.slideshow_data));
+  }
+
   return new Promise(function(resolve, reject) {
     // Use a relative URL in production because multiple domains are mapped
     // Localhost port 3000 is an acceptable origin so in dev the full url 
