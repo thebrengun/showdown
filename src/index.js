@@ -24,7 +24,14 @@ import registerServiceWorker from './registerServiceWorker';
 const slideshowRoot = document.getElementById('slideshow');
 
 if(slideshowRoot) {
-	ReactDOM.render(<Slideshow />, slideshowRoot);
+	ReactDOM.render(
+		<Slideshow 
+			image={slideshowRoot.dataset.image} 
+			date={slideshowRoot.dataset.date} 
+			location={slideshowRoot.dataset.location} 
+		/>, 
+		slideshowRoot
+	);
 }
 ReactDOM.render(<ColorScroll />, document.getElementById('color-scroll'));
 ReactDOM.render(<Nav />, document.getElementById('nav-wrapper'));

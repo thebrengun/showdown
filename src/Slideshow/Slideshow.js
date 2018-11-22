@@ -49,6 +49,7 @@ class Slideshow extends Component {
 	};
 
 	render () {
+		const { image, date, location } = this.props;
 		return (
 			<div 
 				className="Slideshow" 
@@ -60,15 +61,15 @@ class Slideshow extends Component {
 					<div className="home-header-column">
 						<div className="home-header-logo-wrapper">
 							<img 
-								src={largeLogo} 
+								src={image} 
 								alt="Silver Sound Showdown X Music and Video Festival" 
 								className="home-header-logo" 
 							/>
 						</div>
 						<div className="home-header-event-info-wrapper">
 							<div className="home-header-event-info">
-								<span>January 16 2019</span>
-								<span>Brooklyn Bowl</span>
+								<span>{date}</span>
+								<span>{location}</span>
 							</div>
 						</div>
 					</div>
@@ -79,5 +80,11 @@ class Slideshow extends Component {
 		)
 	}
 }
+
+Slideshow.defaultProps = {
+	image: largeLogo,
+	date: 'January 16 2019',
+	location: 'Brooklyn Bowl'
+};
 
 export default Slideshow

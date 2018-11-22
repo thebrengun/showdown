@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+
 .Slideshow {
 	position: fixed;
 	top: 0;
@@ -38,7 +40,7 @@
 }
 
 .home-header-logo {
-	width: 500px;
+	width: 465px;
 	max-width: 100%;
 }
 
@@ -47,8 +49,10 @@
 	justify-content: center;
 	align-items: center;
 	color: #ffffff;
+	font-family: 'Arimo', sans-serif;
 	font-size: .8em;
 	flex-basis: 100%;
+	text-transform: uppercase;
 }
 
 .home-header-event-info {
