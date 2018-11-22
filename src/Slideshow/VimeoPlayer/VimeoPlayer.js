@@ -155,7 +155,6 @@ export default class VimeoPlayer extends Component {
               onPause={this.handlePlayChange}
               onPlay={this.handlePlayChange} 
               onStart={this.handlePlayChange}
-              onBuffer={_ => console.log('Desire is the root of all buffering', _)} 
               className="react-player"
               style={{position: 'absolute', width, height, top: margin.top, left: margin.left}}
             />
