@@ -250,6 +250,14 @@ p.price .woocommerce-Price-amount.amount {
 	outline: none;
 }
 
+.blurred {
+	border-bottom: solid 2px #800080;
+}
+
+.blurred:hover {
+	border-bottom: solid 2px #ff00ff;
+}
+
 .focused {
 	border-bottom: solid 2px #ff00ff;
 }

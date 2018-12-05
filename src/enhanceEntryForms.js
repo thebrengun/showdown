@@ -6,6 +6,7 @@ import 'classlist-polyfill';
 // selectors. It would be nice, also to do the form validation asynchronously rather 
 // than with a page refresh.
 
+const blurredClassName = 'blurred';
 const focusedClassName = 'focused';
 const hiddenClassName = 'u-hidden';
 const focusEl = (el) => el && el.focus();
@@ -28,7 +29,7 @@ function enhanceEntryForms() {
 				const input = formRow.getElementsByTagName('input')[0];
 
 				// We don't want to hide labels for radios or checkboxes because labels
-				// wrap those inputs
+				// wrap those inputs nor do we apply magenta bottom border style
 				if(input && (input.type === 'radio' || input.type === 'checkbox')) {
 					return;
 				}
@@ -40,6 +41,7 @@ function enhanceEntryForms() {
 				// absolutely position since not wrapping radio or checkbox
 				addClass(label, 'placeholder');
 				hideIf(label, fieldHasValue(field));
+				addClass(formRow, blurredClassName);
 				addListener(label, 'click', (e) => focusEl(field));
 				addListener(field, 'focusin', (e) => focusInFormRow(formRow));
 				addListener(field, 'focusout', (e) => focusOutFormRow(formRow));
