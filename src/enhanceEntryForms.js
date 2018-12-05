@@ -27,10 +27,11 @@ function enhanceEntryForms() {
 		formRows.forEach(
 			(formRow) => {
 				const input = formRow.getElementsByTagName('input')[0];
+				const select = formRow.getElementsByTagName('select')[0];
 
 				// We don't want to hide labels for radios or checkboxes because labels
 				// wrap those inputs nor do we apply magenta bottom border style
-				if(input && (input.type === 'radio' || input.type === 'checkbox')) {
+				if(select || input && (input.type === 'radio' || input.type === 'checkbox')) {
 					return;
 				}
 
