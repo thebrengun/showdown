@@ -393,6 +393,10 @@ td.product-total {
 	margin-left: 0;
 }
 
+.woocommerce-checkout-payment {
+	background: #333333 !important;
+}
+
 /* Progressive Enhancements */
 
 @media screen 
