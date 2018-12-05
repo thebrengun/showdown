@@ -31,7 +31,7 @@ function enhanceEntryForms() {
 
 				// We don't want to hide labels for radios or checkboxes because labels
 				// wrap those inputs nor do we apply magenta bottom border style
-				if(select || input && (input.type === 'radio' || input.type === 'checkbox')) {
+				if(select || (input && (input.type === 'radio' || input.type === 'checkbox'))) {
 					return;
 				}
 
