@@ -397,6 +397,11 @@ td.product-total {
 	background: #333333 !important;
 }
 
+.woocommerce-input-wrapper {
+	display: block;
+	width: 100%;
+}
+
 /* Progressive Enhancements */
 
 @media screen 
