@@ -12,7 +12,7 @@ import enhanceNav from './enhanceNav.js';
 import registerServiceWorker from './registerServiceWorker';
 
 document.addEventListener('DOMContentLoaded', function(event) {
-	enhanceNav('nav-wrapper', 'nav-toggle-btn');
+	enhanceNav('nav-container');
 	enhanceEntryForms();
 });
 

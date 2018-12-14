@@ -68,32 +68,6 @@ p {
 	transition: .5s opacity;
 }
 
-.ns-nav-container {
-	position: relative;
-	width: 8.75em;
-	height: 1.5em;
-}
-
-.ns-menu-wrapper {
-	background: #FF00FF;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: stretch;
-}
-
-.ns-menu-list {
-	margin-top: 3.5em;
-	flex-grow: 1;
-	list-style: none;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	justify-content: space-around;
-}
-
 .main-wrapper {
 	background: #000000;
 	min-height: 100vh;
@@ -432,44 +406,6 @@ and (min-width: 768px) {
 		display: block;
 	}
 
-	.ns-nav-container {
-		position: static;
-		width: auto;
-		height: auto;
-		flex-grow: 1;
-	}
-
-	.ns-menu-wrapper {
-		background: transparent;
-		height: auto;
-	}
-
-	.ns-menu-list {
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-around;
-	}
-
-	.ns-menu-list .menu-list-link {
-		padding: 0;
-		color: #FF00FF;
-		margin: 0 .5em;
-	}
-
-	.ns-menu-list .menu-list-link:hover {
-		background: transparent;
-		color: #ffffff;
-	}
-
-	.ns-menu-list .tickets-link {
-		background: transparent;
-		color: #00FF00;
-		margin: 0;
-	}
-
 	.music-video-links {
 		grid-template-columns: repeat(3, 1fr);
 	}
@@ -593,10 +529,6 @@ and (min-width: 992px) {
 
 	.logo {
 		margin-left: 1em;
-	}
-
-	.ns-nav-wrapper {
-		margin-right: 1em;
 	}
 
 	.main {

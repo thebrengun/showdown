@@ -10,7 +10,6 @@
 			<div class="ColorScroll"></div>
 		</noscript>
 	</div>
-	<div id="slideshow"></div>
 	<div>
 		<header>
 			<div id="header" class="header">
@@ -20,74 +19,34 @@
 						<img src="assets/showdown-logo.svg" alt="Showdown X" />
 					</h1>
 					<div>
-						<div class="NavContainer">
-							<div class="nav closed" id="nav-wrapper">
-								<button class="nav-btn" id="nav-toggle-btn">
+						<div class="ns-nav-container" id="nav-container">
+							<div class="nav">
+								<button class="nav-btn hide-desktop">
+									
+										<a href="#ns-nav" class="ns-nav-btn"><span class="u-hidden">Toggle Nav</span></a>
+									
 									<span class="u-hidden">Toggle Nav</span>
 								</button>
-								<nav class="menu-wrapper">
+								<nav class="ns-menu-wrapper hide-mobile">
 									<div class="menu">
-										<ul class="menu-list">
-											<li class="menu-list-item">
-												<a href="/#festival" class="menu-list-link">Festival</a>
-											</li>
-											<li class="menu-list-item">
-												<a href="/#winning-collaborations" class="menu-list-link">Winning Collaborations</a>
-											</li>
-											<li class="menu-list-item">
-												<a href="/submit" class="menu-list-link">Submit</a>
-											</li>
-											<li class="menu-list-item">
-												<a href="/past-festivals" class="menu-list-link">Past Festivals</a>
-											</li>
-											<li class="menu-list-item">
-												<a href="/#sponsors" class="menu-list-link">Sponsors</a>
-											</li>
-											<li class="menu-list-item">
-												<a href="https://www.brooklynbowl.com/event/1785560-silver-sound-showdown-music-brooklyn/" target="_blank" rel="noopener noreferrer" class="menu-list-link tickets-link">Tickets</a>
-											</li>
+										<ul class="ns-menu-list" id="items-wrapper">
+											<li class="menu-list-item"><a href="#" class="menu-list-link">Festival</a></li>
+											<li class="menu-list-item"><a href="#" class="menu-list-link">Winning Collaborations</a></li>
+											<li class="menu-list-item"><a href="#" class="menu-list-link">Sponsors</a></li>
+											<li class="menu-list-item"><a href="#" class="menu-list-link">Submit</a></li>
+											<li class="menu-list-item"><a href="#" class="menu-list-link tickets-link">Tickets</a></li>
 										</ul>
 									</div>
 								</nav>
 							</div>
 						</div>
-						<noscript>
-							<div class="ns-nav-container">
-								<div class="nav hide-desktop">
-									<a href="#ns-nav" class="nav-btn">
-										<span class="u-hidden">Toggle Nav</span>
-									</a>
-								</div>
-								<nav class="ns-menu-wrapper hide-mobile">
-									<ul class="ns-menu-list">
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Lineup</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Collaborations</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Enter</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Past Festivals</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link">Sponsors</a>
-										</li>
-										<li class="menu-list-item">
-											<a href="#" class="menu-list-link tickets-link">Tickets</a>
-										</li>
-									</ul>
-								</nav>
-							</div>
-						</noscript>
 					</div>
 				</div>
 			</div>
 		</header>
+		<div id="slideshow"></div>
 		<main class="main-wrapper">
-			<div class="main with-slideshow">
+			<div class="main">
 			<!-- <div class="main"> -->
 				<div class="main-inner">
 					<article class="enter">
@@ -4659,7 +4618,7 @@
 				</div>
 			</div>
 		</main>
-		<noscript>
+		<!-- <noscript> -->
 			<footer>
 				<nav id="ns-nav" class="ns-menu-wrapper hide-desktop">
 						<ul class="ns-menu-list">
@@ -4685,7 +4644,7 @@
 					</div>
 				</nav>
 			</footer>
-		</noscript>
+		<!-- </noscript> -->
 		<div id="showdown-popup"></div>
 	</div>
 </body>
