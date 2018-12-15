@@ -160,7 +160,8 @@ p {
 .woo-form {
 }
 
-.woocommerce-product-gallery {
+/* No images for submission form product pages */
+.product_cat-submissions .woocommerce-product-gallery {
 	display: none;
 }
 
@@ -236,6 +237,10 @@ p.price .woocommerce-Price-amount.amount {
 	border-bottom: solid 2px #ff00ff;
 }
 
+.woocommerce-variation-add-to-cart .quantity input {
+    border-bottom: solid 2px #ff00ff;
+}
+
 .focused label {
 	display: none !important;
 }
@@ -280,6 +285,26 @@ p.price .woocommerce-Price-amount.amount {
 
 .product_meta, .woocommerce-tabs {
 	display: none;
+}
+
+.woocommerce ul.products li.product .onsale {
+    background-color: #ff00ff;
+}
+
+.woocommerce a.button {
+    background-color: #ff00ff;
+    color: #ffffff;
+}
+
+.woocommerce a.button:hover {
+    background-color: #800080;
+    color: #ffffff;
+}
+
+.woocommerce ul.products li.product a:hover img {
+    -webkit-box-shadow: 0 0 4.5em -1em #FF00FF;
+	-moz-box-shadow: 0 0 4.5em -1em #FF00FF;
+	box-shadow: 0 0 4.5em -1em #FF00FF;
 }
 
 #wpadminbar { display:none !important;}
