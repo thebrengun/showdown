@@ -161,7 +161,7 @@ p {
 }
 
 /* No images for submission form product pages */
-.product_cat-submissions .woocommerce-product-gallery {
+.product_cat-submissions .woocommerce-product-gallery, .product_cat-submissions .related.products {
 	display: none;
 }
 
@@ -305,6 +305,106 @@ p.price .woocommerce-Price-amount.amount {
     -webkit-box-shadow: 0 0 4.5em -1em #FF00FF;
 	-moz-box-shadow: 0 0 4.5em -1em #FF00FF;
 	box-shadow: 0 0 4.5em -1em #FF00FF;
+}
+
+table.variations {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.quantity label.screen-reader-text {
+    clip: unset;
+    height: auto;
+    overflow: unset;
+    position: static!important;
+    width: auto;
+    word-wrap: unset;
+    color: #ff00ff;
+}
+
+table.variations tr {
+    color: #ff00ff;
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.woocommerce-product-gallery img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.woocommerce-product-gallery figure {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    margin: 0;
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(1fr, 100px));
+    grid-template-rows: repeat(4, minmax(1fr, 100px)) auto;
+    grid-gap: .5em .5em;
+    max-width: 532px;
+}
+
+.woocommerce-product-gallery figure div:first-child {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 5;
+}
+
+@media screen
+and (min-width: 550px) {
+    .woocommerce-product-gallery figure {
+        grid-template-columns: repeat(5, minmax(100px, 1fr));
+    }
+
+    .woocommerce-product-gallery figure div:first-child {
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 5;
+    }
+}
+
+@media screen 
+and (min-width: 768px) {
+    table.variations tr {
+        color: #ff00ff;
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+}
+
+@media screen 
+and (min-width: 992px) {
+    .woo-form div.product {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .summary.entry-summary {
+        flex-basis: 80%;
+        flex-grow: 1;
+        flex-shrink: 0;
+        margin-left: 1em;
+    }
+
+    .product_cat-submissions .summary.entry-summary {
+    	margin-left: 0;
+    }
+
+    .woocommerce-product-gallery {
+        flex-shrink: 1;
+        flex-basis: 30%;
+    }
+}
+
+.woo-form div.product span.onsale {
+	display: none;
 }
 
 #wpadminbar { display:none !important;}
