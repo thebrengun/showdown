@@ -49,6 +49,9 @@ document.querySelectorAll('.music-video-link').forEach(
 					postId: container.dataset.postid, 
 					postType: container.dataset.posttype,
 					linkText: container.dataset.linktext,
+					song: container.dataset.song,
+					artist: container.dataset.artist,
+					director: container.dataset.director,
 					imageSrc: container.dataset.imagesrc
 				})
 			), 

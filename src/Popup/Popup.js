@@ -99,15 +99,15 @@ class VideoPopup extends Component {
 			title, image, director_name, director_bio, director_website, vimeo_url, video_description, 
 			artist_name, artist_website 
 		} = this.props.data;
-		const vimeo_path = vimeo_url.split('/');
-		const vimeo_id = vimeo_path[vimeo_path.length - 1];
+		const vimeo_path = vimeo_url ? vimeo_url.split('/') : '';
+		const vimeo_id = vimeo_path ? vimeo_path[vimeo_path.length - 1] : '';
 		return (
 			<div className="popup-inner popup-video-inner">
 				<div className="popup-video-wrapper">
 					<div className="popup-padding">
 						<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
 						<h3 dangerouslySetInnerHTML={{__html: artist_name}}></h3>
-						<div className="react-player-wrapper">
+						{vimeo_id && <div className="react-player-wrapper">
 							<iframe 
 								id="vpup" 
 								title={title}
@@ -119,7 +119,7 @@ class VideoPopup extends Component {
 								mozallowfullscreen="" 
 								src={`https://player.vimeo.com/video/${vimeo_id}?title=0&byline=0&portrait=0&color=ffffff&autoplay=1&api=1&loop=0&player_id=vpup`}>
 							</iframe>
-						</div>
+						</div>}
 						<div className="popup-description" dangerouslySetInnerHTML={video_description}></div>
 						{artist_website && <ExternalLink url={artist_website}>Visit {artist_name}</ExternalLink>}
 					</div>
@@ -127,9 +127,9 @@ class VideoPopup extends Component {
 				<div className="popup-director popup-padding">
 					<h2 dangerouslySetInnerHTML={{__html: director_name}}></h2>
 					<h3>Director</h3>
-					<div className="popup-image">
+					{image && <div className="popup-image">
 						{image && <img src={image} alt={director_name} />}
-					</div>
+					</div>}
 					<div className="popup-description" dangerouslySetInnerHTML={director_bio}></div>
 					{director_website && <ExternalLink url={director_website}>{`Visit ${director_name}`}</ExternalLink>}
 				</div>

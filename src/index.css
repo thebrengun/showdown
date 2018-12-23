@@ -140,6 +140,23 @@ p {
 	text-decoration: none;
 }
 
+.music-video-link-text span {
+	display: block;
+}
+
+.music-video-link-text .song-name::before, .music-video-link-text .song-name::after {
+	content: '\0022';
+}
+
+.music-video-link-text .director-name {
+	color: #ffffff;
+	font-size: .9em;
+}
+
+/*.music-video-link-text .director-name::before {
+	content: 'Director: ';
+}*/
+
 .music-video-link:hover .music-video-link-thumbnail, 
 .entry-type:hover .entry-type-thumbnail img {
 	-webkit-box-shadow: 0 0 4.5em -1em #FF00FF;
