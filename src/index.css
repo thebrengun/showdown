@@ -424,8 +424,6 @@ and (min-width: 992px) {
 	display: none;
 }
 
-#wpadminbar { display:none !important;}
-
 /* WooCommerce Cart */
 
 td.product-remove {

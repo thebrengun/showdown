@@ -128,7 +128,7 @@ class VideoPopup extends Component {
 					<h2 dangerouslySetInnerHTML={{__html: director_name}}></h2>
 					<h3>Director</h3>
 					{image && <div className="popup-image">
-						{image && <img src={image} alt={director_name} />}
+						<img src={image} alt={director_name} />
 					</div>}
 					<div className="popup-description" dangerouslySetInnerHTML={director_bio}></div>
 					{director_website && <ExternalLink url={director_website}>{`Visit ${director_name}`}</ExternalLink>}
