@@ -142,10 +142,11 @@ class PlayerContainer extends Component {
             nextVideo={this.nextVideo}
             hasPrevious={this.state.hasPrevious}
             hasNext={this.state.hasNext} 
-            isImageShown={isImageShown}
+            isImageShown={isImageShown} 
+            key="video-player"
           /> : null, 
         isImageShown ? 
-          <CoverImage /> : null
+          <CoverImage key="cover-image" /> : null
       ]
     );
   }

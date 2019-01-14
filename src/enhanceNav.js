@@ -1,9 +1,6 @@
 import 'classlist-polyfill';
 import './Nav/Nav.css';
 
-const addClass = (el, className) => el && el.classList.add(className);
-const removeClass = (el, className) => el && el.classList.remove(className);
-
 function enhanceNav(containerId) {
 	const container = document.getElementById(containerId);
 	const wrapper = container.getElementsByClassName('nav')[0];

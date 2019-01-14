@@ -119,6 +119,77 @@ p {
 	cursor: pointer;
 }
 
+.music-video-link-thumbnail .laurel-badge {
+	background: #ff00ff;
+	position: absolute;
+	top: 0;
+	right: .5em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: .25em;
+}
+
+.music-video-link-thumbnail .laurel-badge img {
+	position: static;
+	margin: 0;
+}
+
+.music-video-link-thumbnail .awards-overlay {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(255, 255, 255, .6);
+	width: 100%;
+	height: 100%;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: space-between;
+	color: #000000;
+}
+
+.music-video-link-thumbnail:hover .awards-overlay {
+	display: flex;
+}
+
+.music-video-link-thumbnail:hover .laurel-badge {
+	display: none;
+}
+
+.awards-overlay .laurel {
+	flex-basis: 12%;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 .25em;
+}
+
+.awards-overlay .laurel img {
+	position: static;
+	margin: 0;
+	max-width: 100%;
+}
+
+.awards-overlay .laurel img.right {
+	transform: scale(-1,1);
+}
+
+.awards-overlay .list {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.awards-overlay .list span {
+	text-align: center;
+}
+
 .music-video-link-thumbnail img {
 	position: absolute;
 	height: 150%;

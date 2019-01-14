@@ -52,7 +52,9 @@ document.querySelectorAll('.music-video-link').forEach(
 					song: container.dataset.song,
 					artist: container.dataset.artist,
 					director: container.dataset.director,
-					imageSrc: container.dataset.imagesrc
+					imageSrc: container.dataset.imagesrc,
+					awards: container.dataset.awards ? JSON.parse(container.dataset.awards) : [],
+					selectedFor: container.dataset.selectedFor ? JSON.parse(container.dataset.selectedFor) : []
 				})
 			), 
 			container
