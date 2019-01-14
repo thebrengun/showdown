@@ -22,7 +22,8 @@ export const createPopupPost = (postId, postType) => (dispatch, state) => {
 			const { title, acf } = response;
 			const { 
 				website, images, image, description, director_name, director_bio, director_image, 
-				director_website, vimeo_url, video_description, artist_name, artist_website 
+				director_website, vimeo_url, video_description, artist_name, artist_website, 
+				video_image, meta_image, awards, logo
 			} = acf;
 
 			let selectedImage;
@@ -40,7 +41,8 @@ export const createPopupPost = (postId, postType) => (dispatch, state) => {
 				title: title.rendered, 
 				website, image: selectedImage, description: {__html: description},
 				director_name, director_bio: {__html: director_bio}, director_image, director_website, vimeo_url, 
-				video_description: {__html: video_description}, artist_name, artist_website
+				video_description: {__html: video_description}, artist_name, artist_website, video_image, 
+				meta_image, awards, logo
 			}));
 			dispatch(createPopupRequestDone());
 		}, 

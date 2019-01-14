@@ -97,17 +97,18 @@ class VideoPopup extends Component {
 	render() {
 		const { 
 			title, image, director_name, director_bio, director_website, vimeo_url, video_description, 
-			artist_name, artist_website 
+			artist_name, artist_website, video_image, meta_image
 		} = this.props.data;
 		const vimeo_path = vimeo_url ? vimeo_url.split('/') : '';
 		const vimeo_id = vimeo_path ? vimeo_path[vimeo_path.length - 1] : '';
+		const selected_video_image = video_image && video_image['sizes'] ? video_image['sizes']['showdown-x-thumb'] : meta_image;
 		return (
 			<div className="popup-inner popup-video-inner">
 				<div className="popup-video-wrapper">
 					<div className="popup-padding">
 						<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
 						<h3 dangerouslySetInnerHTML={{__html: artist_name}}></h3>
-						{vimeo_id && <div className="react-player-wrapper">
+						{vimeo_id ? <div className="react-player-wrapper">
 							<iframe 
 								id="vpup" 
 								title={title}
@@ -119,7 +120,11 @@ class VideoPopup extends Component {
 								mozallowfullscreen="" 
 								src={`https://player.vimeo.com/video/${vimeo_id}?title=0&byline=0&portrait=0&color=ffffff&autoplay=1&api=1&loop=0&player_id=vpup`}>
 							</iframe>
-						</div>}
+						</div> : 
+						<div className="popup-image">
+							<img src={selected_video_image} alt={`${title}`} />
+						</div>
+						}
 						<div className="popup-description" dangerouslySetInnerHTML={video_description}></div>
 						{artist_website && <ExternalLink url={artist_website}>Visit {artist_name}</ExternalLink>}
 					</div>
@@ -140,12 +145,13 @@ class VideoPopup extends Component {
 
 class SponsorJudgePopup extends Component {
 	render() {
-		const { title, website, image, description } = this.props.data;
+		const { title, website, image, logo, description } = this.props.data;
+		const logoUrl = logo && logo.sizes && logo.sizes['showdown-x-thumb'] ? logo.sizes['showdown-x-thumb'] : '';
 		return (
 			<div className="popup-inner">
 				<div className="popup-image-wrapper">
 					<div className="popup-image">
-						<img src={image} alt={`${title}`} />
+						<img src={image || logoUrl} alt={`${title}`} />
 					</div>
 				</div>
 				<div className="popup-padding">
