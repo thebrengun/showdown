@@ -37,14 +37,16 @@ class Tile extends PureComponent {
 							<img src={laurelBadge} alt="Laurel Wreath" width="32" height="32" />
 						</span>
 					}
-					{awards.length > 0 &&
+					{awards.length > 0 && 
 						<span className="awards-overlay">
-							<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" /></span>
-							<span className="list">
-								{selectedFor && <span>{selectedFor.join(' ')}</span>}
-								{awards.map((award, i) => <span key={'award-' + i}>{award}</span>)}
+							<span className="awards-overlay-inner">
+								<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" /></span>
+								<span className="list">
+									{selectedFor && <span>{selectedFor.join(' ')}</span>}
+									{awards.map((award, i) => <span key={'award-' + i}>{award}</span>)}
+								</span>
+								<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" className="right" /></span>
 							</span>
-							<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" className="right" /></span>
 						</span>
 					}
 				</span>
