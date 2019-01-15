@@ -150,16 +150,27 @@ p {
 }
 
 .awards-overlay-inner {
+	flex-grow: 1;
 	display: flex;
 	background: #000000;
 	background: rgba(0, 0, 0, .75);
-	width: 100%;
-	padding: .125em;
+	padding: .25em;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 	color: #ffffff;
 	font-size: .8em;
+}
+
+.awards-overlay-inner.awards-popup {
+	background: #000000;
+	margin: 1em 1em 0 1em;
+	border-radius: .5em;
+	padding: .5em;
+}
+
+.awards-overlay-inner.awards-popup.video {
+	margin: 1em 0 0 0;
 }
 
 .music-video-link:hover .awards-overlay-inner {
@@ -179,7 +190,6 @@ p {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin: 0;
 }
 
 .awards-overlay-inner .laurel img {
@@ -615,6 +625,10 @@ and (min-device-width: 575px) {
 
 	.music-video-link-text {
 		margin-bottom: 1em;
+	}
+
+	.awards-overlay-inner.awards-popup {
+		margin: 1em 0 0 0;
 	}
 }
 

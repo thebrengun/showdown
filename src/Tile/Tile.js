@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { createPopupPost } from '../store.js';
-import laurelBadge from './assets/laurel-badge.svg';
 import laurelFrameL from './assets/laurel-frame-left.svg';
 
 // To Do: move related css from web.css into Tile.css
@@ -32,11 +31,6 @@ class Tile extends PureComponent {
 			<React.Fragment>
 				<span className="music-video-link-thumbnail" onClick={handlePopupPost}>
 					<img src={imageSrc} alt="Music Video" />
-					{awards.length > 0 &&
-						<span className="laurel-badge">
-							<img src={laurelBadge} alt="Laurel Wreath" width="32" height="32" />
-						</span>
-					}
 					{awards.length > 0 && 
 						<span className="awards-overlay">
 							<span className="awards-overlay-inner">

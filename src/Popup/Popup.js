@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './Popup.css';
 import { createPopupHide } from '../store.js';
 import loadImg from './assets/loader-animated.gif';
+import laurelFrameL from '../Tile/assets/laurel-frame-left.svg';
 
 class Popup extends Component {
 	renderRequesting = () => {
@@ -75,13 +76,28 @@ class InfoPopup extends Component {
 
 class ArtistPopup extends Component {
 	render() {
-		const { title, website, image, description } = this.props.data;
+		const { title, website, image, description, awards, selected_for } = this.props.data;
+
+		if(awards && awards.length === 0) {
+			awards.push('Finalist');
+		}
+
 		return (
 			<div className="popup-inner">
 				<div className="popup-image-wrapper">
 					<div className="popup-image">
 						<img src={image} alt={`${title}`} />
 					</div>
+					{awards.length > 0 && 
+					<span className="awards-overlay-inner awards-popup">
+						<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" /></span>
+						<span className="list">
+							{selected_for && <span>{selected_for.join(' ')}</span>}
+							{awards.map((award, i) => <span key={'award-' + i}>{award}</span>)}
+						</span>
+						<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" className="right" /></span>
+					</span>
+					}
 				</div>
 				<div className="popup-padding">
 					<h2 dangerouslySetInnerHTML={{__html: title}}></h2>
@@ -97,8 +113,13 @@ class VideoPopup extends Component {
 	render() {
 		const { 
 			title, image, director_name, director_bio, director_website, vimeo_url, video_description, 
-			artist_name, artist_website, video_image, meta_image
+			artist_name, artist_website, video_image, meta_image, awards, selected_for
 		} = this.props.data;
+
+		if(awards && awards.length === 0) {
+			awards.push('Finalist');
+		}
+
 		const vimeo_path = vimeo_url ? vimeo_url.split('/') : '';
 		const vimeo_id = vimeo_path ? vimeo_path[vimeo_path.length - 1] : '';
 		const selected_video_image = video_image && video_image['sizes'] ? video_image['sizes']['showdown-x-thumb'] : meta_image;
@@ -135,6 +156,16 @@ class VideoPopup extends Component {
 					{image && <div className="popup-image">
 						<img src={image} alt={director_name} />
 					</div>}
+					{awards.length > 0 && 
+					<span className="awards-overlay-inner awards-popup video">
+						<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" /></span>
+						<span className="list">
+							{selected_for && <span>{selected_for.join(' ')}</span>}
+							{awards.map((award, i) => <span key={'award-' + i}>{award}</span>)}
+						</span>
+						<span className="laurel"><img src={laurelFrameL} alt="Laurel Branch" className="right" /></span>
+					</span>
+					}
 					<div className="popup-description" dangerouslySetInnerHTML={director_bio}></div>
 					{director_website && <ExternalLink url={director_website}>{`Visit ${director_name}`}</ExternalLink>}
 				</div>
